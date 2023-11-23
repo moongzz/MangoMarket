@@ -1,0 +1,483 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'TheJamsil5Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+body {
+    position: absolute;
+    overflow-x: hidden;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 590vh;
+    margin: 0;
+}
+
+/* 망고 버튼 관련*/
+.hide {
+    display: none;
+}
+
+
+
+#mangoToggle:checked~section .btn-open {
+    animation-name: btnExpand;
+}
+/* 나무 우선순위 때문에 가려놓음 */
+#mangoToggle:checked~#TreeBody {
+    display: none;
+}
+#mangoToggle:checked~section #inside {
+    display: block;
+    animation-name: delayedFadeIn;
+}
+/* 흰색 배경 가리려고 높이 크게 잡음 수정할거 */
+#mangoToggle:checked~section {
+    height: 300vw;
+    background-color: #FFD066;
+    transition-delay: 3s;
+}
+#mangoToggle:checked~section #titleBox {
+    background-color: #FFD067;
+    transition-delay: 5s;
+}
+
+
+
+
+#Gobtn {
+    top: 92%;
+    right: 2%;
+    z-index: 2;
+    position: fixed;
+    padding: 15px 30px;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    border: 3px solid #FFD067;
+    color: #6e6e6e;
+    font-family: 'TheJamsil5Bold';
+}
+#Gobtn:hover {
+    background-color: #FFD067;
+    color: #6e6e6e;
+    letter-spacing: 2px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+#Gobtn:active {
+    transform: scale(1.5);
+}
+
+
+
+
+section {
+    position: fixed;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: .2em;
+}
+/* 안에 텍스트들은 고정되면 안됨 */
+section:not(#inside) {
+    position: absolute;
+}
+section #inside {
+    opacity: 0;
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    padding: 2em;
+    animation-duration: 4.5s;
+    animation-fill-mode: forwards;
+}
+
+
+
+
+.btn {
+    position: absolute;
+    top: 3%;
+    left: 97%;
+    transform: translate(-50%, -50%);
+    background-size: cover;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-image: url(../images/망고.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    user-select: none;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+}
+.btn-open{
+	position: fixed;
+}
+
+
+
+/* 망고 안에 있는 내용 */
+#inside p {
+    margin: 0;
+    color: white;
+}
+/* x버튼 */
+#inside .btn-close {
+    position: fixed;
+    top: 3%;
+    left: 95%;
+    /* background: rgba(0, 0, 0, .5); */
+    background: #ED9D3E;
+    font-size: .8em;
+    text-align: center;
+    height: 3em;
+    width: 3em;
+    line-height: 3em;
+    border-radius: 3em;
+    cursor: pointer;
+    padding: 1%;
+    color: white;
+    z-index: 2;
+}
+#inside #title {
+    position: sticky;
+    top: 0;
+    height: 100px;
+    display: inline-flex;
+
+    align-items: center;
+    mix-blend-mode: overlay;
+    margin-left: 2px;
+    margin-right: 2px;
+    font-size: 120px;
+}
+
+
+#titleBox {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    padding: 1%;
+}
+#titleBox #title span{
+	font-family: 'Coda', cursive; 
+	top: 0; 
+	text-shadow: 4px 4px 1px #ED9D3E;
+}
+#titleBox p{
+	font-family: 'Black Han Sans', sans-serif; 
+	font-size: 50px; 
+	margin-top: 1%;
+}
+
+
+
+#contentBox {
+    margin-top: 11%;
+}
+#contentBox p {
+    position: relative;
+    animation: fadeInUp 3s;
+    width: 90vw;
+}
+#contentBox #p1 span{
+	font-family: 'Antonio', sans-serif; 
+	font-size: 70px; 
+	color: white; 
+	text-shadow: 3px 3px 1px #ED9D3E;
+}
+
+#p2:hover .highlight:after {
+    width: 100%;
+    transition-delay: 0.2s;
+}
+#p2{
+	font-size: 30px; 
+	width: 50%; 
+	line-height: 40px; 
+	font-family: 'Do Hyeon', sans-serif;
+}
+#p2 span{
+	font-size: 20px; 
+}
+#p2 .highlight:after {
+    background: #ABC270;
+}
+
+
+.highlight {
+    position: relative;
+}
+
+.highlight:after {
+    content: "";
+    width: 0;
+    height: 10px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    transition: 0.2s all;
+    border-radius: 10px;
+}
+
+
+
+
+#p3:hover .highlight:after {
+    width: 100%;
+    transition-delay: 0.2s;
+}
+#p3 .highlight:after {
+    background: #FFA659;
+}
+#p3{
+	font-size: 30px; 
+	width: 50%; 
+	line-height: 40px; 
+	font-family: 'Do Hyeon', sans-serif;
+}
+#p3 span{
+	font-size: 20px; 
+}
+
+#p4:hover .highlight:after {
+    width: 100%;
+    transition-delay: 0.2s;
+}
+#p4 .highlight:after {
+    background: #F16767;
+}
+#p4{
+	font-size: 30px; 
+	width: 50%; 
+	line-height: 40px; 
+	font-family: 'Do Hyeon', sans-serif;
+}
+#p4 span{
+	font-size: 20px; 
+}
+/* 나무 hover하면 망고 떨어짐 */
+#TreeBody:hover #mango {
+    top: 100vw;
+}
+#TreeBody #Tree {
+    position: absolute;
+    top: 7vh;
+    left: 45vw;
+    width: 50vw;
+    height: 90vh;
+    z-index: 1;
+}
+#TreeBody #titleText {
+    margin-top: 0;
+    left: 0;
+    font-family: 'Antonio';
+    font-size: 7em;
+    text-align: left;
+}
+#TreeBody #titleText span{
+	display: block;
+}
+
+#TreeBody #titleText #text2{
+	font-size: 40px;
+}
+
+
+
+#MangoBody {
+    position: absolute;
+    width: 47vw;
+    height: 89vh;
+    left: 48vw;
+    top: 7vh;
+}
+#MangoBody img{
+	width: 50px;
+	height: 50px;
+}
+#mango1,
+#mango,
+#mango3,
+#mango4,
+#mango5,
+#mango6 {
+    position: absolute;
+    z-index: 1;
+}
+
+#mango1 {
+    left: 10%;
+    top: 20%;
+}
+
+/* 주인공 망고 */
+#mango {
+    left: 25%;
+    top: 50%;
+    transition-duration: 5s;
+    transition-delay: 1s;
+}
+
+#mango3 {
+    left: 53%;
+    top: 10%;
+}
+
+#mango4 {
+    left: 55%;
+    top: 40%;
+}
+
+#mango5 {
+    left: 70%;
+    top: 60%;
+}
+
+#mango6 {
+    left: 80%;
+    top: 30%;
+}
+
+
+/* 나무 hover 하면 흔들리게 하기 */
+img:nth-child(1):hover {
+    animation: ddd.3s infinite;
+}
+
+@keyframes ddd {
+    from {
+        left: 45vw;
+    }
+
+    to {
+        left: 47vw
+    }
+}
+
+/* 망고버튼 커짐 */
+@keyframes btnExpand {
+    15% {
+        width: 3em;
+        height: 3em;
+    }
+
+    to {
+        width: 9999px;
+        height: 310vw;
+    }
+}
+
+/* 망고 내용 보여줌 */
+@keyframes delayedFadeIn {
+    100% {
+        opacity: 0
+    }
+
+    55% {
+        opacity: 0
+    }
+
+    65% {
+        opacity: 1
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+/* 스크롤 내리면 한글자씩 망고마켓 나옴 */
+#codepen {
+    display: flex;
+    font-size: 60px;
+    align-items: flex-start;
+    color: #000;
+    justify-content: center;
+}
+
+#codepen span {
+    font-family: 'Bungee', cursive;
+    position: sticky;
+    top: calc(50% - 50px);
+    height: 100px;
+    display: inline-flex;
+    align-items: center;
+    mix-blend-mode: overlay;
+    margin-left: 2px;
+    margin-right: 2px;
+    font-size: 120px;
+    color: #FFD067;
+}
+
+#bg {
+    position: absolute;
+    left: -25vw;
+    top: -50vw;
+    width: 150vw;
+    height: 350vw;
+    z-index: -1;
+}
+
+#codepen #c1 {
+    margin-top: 60vw;
+}
+
+#codepen #c2 {
+    margin-top: 80vw;
+}
+
+#codepen #c3 {
+    margin-top: 110vw;
+}
+
+#codepen #c4 {
+    margin-top: 140vw;
+}
+
+#codepen #c5 {
+    margin-top: 170vw;
+}
+
+#codepen #c6 {
+    margin-top: 200vw;
+    font-size: 80px;
+    color: black;
+}
+
+#codepen #c7 {
+    margin-top: 230vw;
+}
+
+
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+    }
+
+    50% {}
+
+    to {
+        opacity: 1;
+        transform: translateZ(0);
+    }
+}
