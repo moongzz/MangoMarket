@@ -1,0 +1,197 @@
+@charset "UTF-8";
+/* 동네생활 폰트 */
+@font-face {
+    font-family: 'KBO-Dia-Gothic_bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+   	height: 12vh;
+    background-color: white;
+    z-index: 2;
+    text-align: center;
+}
+.header p{
+	cursor: pointer;
+	display: inline-block;
+}
+.header .header_Text1{
+	color: #FFD067; 
+	font-family: 'Bungee', cursive; 
+	font-size: 30px;
+}
+.header .header_Text2{
+	font-family: 'Bungee', cursive; 
+	font-size: 20px;
+}
+.header img{
+	width: 50px; 
+	height: 50px;
+}
+.header #searchBox {
+    position: absolute;
+    top: 5vh;
+    right: 12vw;
+    width: 18vw;
+    height: 6vh;
+    padding: 1%;
+    border-radius: 10px;
+    border: none;
+    background-color: #F2F3F6;
+}
+.header #searchbtn {
+    border: 1px #F2F3F6 solid;
+    background-color: white;
+    position: absolute;
+    right: 3vw;
+    top: 5vh;
+    height: 6vh;
+    width: 8vw;
+    border-radius: 10px;
+}
+#informationCenter {
+    position: absolute;
+   	top: 2vh;
+    font-size: 14px;
+    right: 26vw;
+    color: gray;
+    cursor: pointer;
+}
+ul {
+    list-style: none;
+}
+
+#userBox {
+    text-align: left;
+    margin-top: -10vh;
+    margin-left: 7vw;
+}
+
+#userBox li {
+    float: left;
+    padding: 1vw;
+}
+
+#userBox a {
+    text-decoration: none;
+    font-size: 14px;
+    color: gray;
+    cursor: pointer;
+}
+
+#userBox i {
+    color: #ffd067;
+}
+/* ////////////모달창/////////////// */
+#modal.modal-overlay {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(1.5px);
+    border-radius: 10px;
+    z-index: 5;
+}
+
+#modal .modal-window {
+    border-radius: 10px;
+    width: 43vw;
+    height: 80vh;
+    position: relative;
+    overflow-y: scroll;
+    background-image: url(../images/loginImg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}    
+
+.close-area {
+    position: fixed;
+    display: inline;
+    padding-right: 10px;
+    cursor: pointer;
+    color: #3f6b52;
+    z-index: 5;
+    right: 40%;
+    top: 35%;
+}
+
+.modal-window #positionBox {
+    position: absolute;
+    top: 33vh;
+    left: 11vw;
+}
+#positionBox #idBox {
+    background-color: white;
+    font-size: 25px;
+    margin-bottom: 1vh;
+    border-radius: 10px;
+}
+#idBox i {
+    padding: 1vh;
+    color: #3f6b52;
+}
+#positionBox #idBox input {
+    border: none;
+    border-radius: 10px;
+    width: 15vw;
+    height: 5vh;
+}
+#positionBox #pwBox {
+    background-color: white;
+    font-size: 25px;
+    border-radius: 10px;
+}
+#pwBox i {
+    padding: 1vh;
+    color: #3f6b52;
+}
+#positionBox #pwBox input {
+    border: none;
+    border-radius: 10px;
+    width: 15vw;
+    height: 5vh;
+}
+
+#positionBox input[type="submit"] {
+    border: none;
+    background-color: #4e8465;
+    color: white;
+    margin-top: 1vh;
+    padding: 2vh 8vw;
+    border-radius: 10px;
+}
+
+#positionBox a {
+    padding: 0.5vw;
+    font-size: 12px;
+    color: #3f6b52;
+    text-decoration: none;
+}
+/* //////////////모달창 끝////////////// */
+
+li {
+    list-style: none;
+}
+
+#chatRoom > a{
+    font-family: 'KBO-Dia-Gothic_bold';
+    font-size: 14px;
+    color: #4e8465;
+    cursor: pointer;
+}
+#chatRoom > i{
+	font-size: 14px;
+	color: #4e8465;
+    cursor: pointer;
+}

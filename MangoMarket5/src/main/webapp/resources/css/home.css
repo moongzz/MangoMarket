@@ -1,0 +1,142 @@
+@charset "UTF-8";
+@font-face {
+    font-family: 'KBO-Dia-Gothic_bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    position: relative;
+    height: 300vh;
+}
+.section {
+    position: relative;
+    height: 88vh;
+    width: 100vw;
+}
+#section1 {
+    background-color: #ffe0b2;
+    padding-top: 12vh;
+}
+#section2 {
+    background-color: white;
+}
+#section3 {
+    background-color: #fff49b;
+/*     background-color: #F9E75C; */
+}
+
+
+.footer {
+    width: 100vw;
+    text-align: center;
+}
+
+.footerBox {
+	/* border-top: 1px solid gray; */
+    width: 50vw;
+    font-size: 13px;
+    color: grey;
+    text-align: center;
+    margin-left: 25vw;
+}
+/* .sideMenu span{
+    display: none;
+    border: 2px solid red;
+    position: absolute;
+    left: 1000px;
+    z-index: 1;
+} */
+/* .btn img:hover{
+
+} */
+.section #bigText {
+    font-size: 34px;
+    font-family: 'KBO-Dia-Gothic_bold';
+}
+.section #smallText {
+    line-height: 1.5;
+}
+
+#section1 #textBox {
+    margin-top: 40vh;
+    margin-left: 20vw;
+}
+/* #section1 img {
+    position: absolute;
+    right: 27vh;
+    top: 27vh;
+} */
+#section1 #section1_1 {
+    position: absolute;
+    right: 43vh;
+    top: 32vh;
+    width: 30vw;
+    border-radius: 20px;
+    z-index: 1;
+}
+#section1 #section1_2 {
+    position: absolute;
+    right: 29vh;
+    top: 53vh;
+    width: 30vw;
+    border-radius: 20px;
+}
+#section2 #textBox {
+    position: absolute;
+    top: 25vh;
+    right: 20vw;
+}
+/* #section2 img {
+    position: absolute;
+    left: 40vh;
+    top: 14vh;
+} */
+
+#section2 img {
+    position: absolute;
+    left: 40vh;
+    top: 14vh;
+    width: 28vw;
+    border-radius: 20px;
+}
+#section2 input[type="button"] {
+    border: none;
+    padding: 5%;
+    border-radius: 16px;
+    font-weight: bold;
+}
+#section3 #textBox {
+    position: absolute;
+    top: 15vh;
+    left: 20vw;
+}
+#section3 img {
+    position: absolute;
+    right: 27vh;
+    top: 6vh;
+}
+.circle {
+    display: inline-block;
+    font-size: 30px;
+    padding: 4%;
+    border-radius: 50%;
+    background-color: #ffe730;
+    color: black;
+}
+#section3 #textBox > div {
+    width: 10vw;
+    float: left;
+    margin-right: 1vw;
+    font-size: 13px;
+    margin-top: 2vh;
+}
+#section3 #textBox > div p {
+    line-height: 1.4em;
+}
+#section3 #textBox > div strong {
+    line-height: 2.5em;
+}
