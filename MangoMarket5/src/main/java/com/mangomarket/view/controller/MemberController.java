@@ -54,7 +54,8 @@ public class MemberController {
 		String errorMsg = ValidaroService.validateSignUp(vo);
 		String path = "";
 		
-		if(errorMsg == "") {
+		if(errorMsg.equals("")) {
+			memberService.insert(vo);
 			path = "home";
 		} else {
 			request.setAttribute("errMSG", errorMsg);
@@ -62,7 +63,6 @@ public class MemberController {
 			path = "error";
 		}
 		
-		memberService.insert(vo);
 		return path;
 	}
 	

@@ -104,7 +104,8 @@ public class ValidaroServiceImpl implements ValidaroService {
 	}
 	
 	private boolean isPhoneFormat(String phone) {
-		if(phone.matches("^\\d{3}-\\d{3}-\\d{4}$")) return true;
+		System.out.println(phone);
+		if(phone.matches("^\\d{3}-\\d{4}-\\d{4}$")) return true;
 		return false;
 	}
 }
