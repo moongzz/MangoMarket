@@ -19,6 +19,8 @@ public class ValidaroServiceImpl implements ValidaroService {
 		errorMsg += validateUserID(vo.getId());
 		errorMsg += validateUserPwd(vo.getPwd());
 		errorMsg += validateUserNick(vo.getUserNick());
+		errorMsg += validateUserEmail(vo.getEmail());
+		errorMsg += validateUserPhone(vo.getPhone());
 		
 		return errorMsg;
 	}
@@ -56,14 +58,14 @@ public class ValidaroServiceImpl implements ValidaroService {
 	}
 	
 	private String validateUserNick(String nick) {
-		if(isNicknameDuplicate(nick)) return "중복된 닉네임입니다.";
+		if(isNickDuplicate(nick)) return "중복된 닉네임입니다.";
 		else if(isNickMaxLength(nick)) return "닉네임은 최대 20자까지 가능합니다.";
 		else if(isContainsSpace(nick)) return "공백은 입력할 수 없습니다.";
 		return "";
 	}
 	
-	private boolean isNicknameDuplicate(String nick) {
-		int result = dao.isNicknameDuplicate(nick);
+	private boolean isNickDuplicate(String nick) {
+		int result = dao.isNickDuplicate(nick);
 		if(result != 0) return true;
 		return false;
 	}
@@ -75,6 +77,34 @@ public class ValidaroServiceImpl implements ValidaroService {
 	
 	private boolean isContainsSpace(String nick) {
 		if(nick.contains(" ")) return true;
+		return false;
+	}
+	
+	private String validateUserEmail(String email) {
+		if(isEmailDuplicate(email)) return "이미 등록된 이메일입니다.";
+		return "";
+	}
+	
+	private boolean isEmailDuplicate(String email) {
+		int result = dao.isEmailDuplicate(email);
+		if(result != 0) return true;
+		return false;
+	}
+	
+	private String validateUserPhone(String phone) {
+		if(isPhoneDuplicate(phone)) return "이미 등록된 전화번호입니다.";
+		else if(!isPhoneFormat(phone)) return "전화번호를 다시 확인해주세요.";
+		return "";
+	}
+	
+	private boolean isPhoneDuplicate(String phone) {
+		int result = dao.isPhoneDuplicate(phone);
+		if(result != 0) return true;
+		return false;
+	}
+	
+	private boolean isPhoneFormat(String phone) {
+		if(phone.matches("^\\d{3}-\\d{3}-\\d{4}$")) return true;
 		return false;
 	}
 }

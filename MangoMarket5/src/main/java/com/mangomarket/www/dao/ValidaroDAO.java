@@ -22,7 +22,15 @@ public class ValidaroDAO {
 		return mybatis.selectOne(NAMESPACE + ".isUserIDUnique", id);
 	}
 	
-	public int isNicknameDuplicate(String nick) {
-		return mybatis.selectOne(NAMESPACE + ".isNicknameDuplicate", nick);
+	public int isNickDuplicate(String nick) {
+		return mybatis.selectOne(NAMESPACE + ".isNickDuplicate", nick);
+	}
+	
+	public int isEmailDuplicate(String email) {
+		return mybatis.selectOne(NAMESPACE + ".isEmailDuplicate", email);
+	}
+	
+	public int isPhoneDuplicate(String phone) {
+		return mybatis.selectOne(NAMESPACE + ".isPhoneDuplicate", phone);
 	}
 }
