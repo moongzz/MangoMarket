@@ -8,4 +8,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
         SELECT COUNT(*) FROM USER WHERE id = #{id}
     </select>
     
+	<select id="isNicknameDuplicate" resultType="Integer">
+        SELECT COUNT(*) FROM USER WHERE userNick = #{nick}
+    </select>
+    
 </mapper>

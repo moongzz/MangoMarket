@@ -21,4 +21,8 @@ public class ValidaroDAO {
 	public int isUserIDUnique(String id) {
 		return mybatis.selectOne(NAMESPACE + ".isUserIDUnique", id);
 	}
+	
+	public int isNicknameDuplicate(String nick) {
+		return mybatis.selectOne(NAMESPACE + ".isNicknameDuplicate", nick);
+	}
 }
