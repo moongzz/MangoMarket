@@ -10,5 +10,6 @@
  	<mappers>
  		<mapper resource="mapping/BoardMapper.xml"/>
  		<mapper resource="mapping/MemberMapper.xml"/>
+ 		<mapper resource="mapping/ValidaroMapper.xml"/>
  	</mappers>
  </configuration>

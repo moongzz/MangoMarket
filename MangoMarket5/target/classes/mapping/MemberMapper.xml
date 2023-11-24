@@ -13,4 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
        select * from user where id=#{id}
     </select>
 
+	<insert id="insertMember">
+		INSERT INTO user(id, userNick, userName, email, phone, pwd) VALUES(#{id}, #{userNick}, #{userName}, #{email}, #{phone}, #{pwd})
+	</insert>
 </mapper>

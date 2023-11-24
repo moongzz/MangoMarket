@@ -9,5 +9,7 @@ public interface MemberService {
 	public int login(MemberVO vo) throws Exception;
 	
 	public void loginCheck(MemberVO vo, HttpSession session);
+	
+	public void insert(MemberVO vo);
 
 }

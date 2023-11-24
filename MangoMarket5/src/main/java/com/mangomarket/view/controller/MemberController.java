@@ -11,11 +11,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.mangomarket.www.service.MemberService;
 import com.mangomarket.www.vo.MemberVO;
 
+import com.mangomarket.www.service.ValidaroService;
+
 @Controller
 public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+
+	@Autowired
+	private ValidaroService ValidaroService;
 
 	@RequestMapping("/login")
 	public String login(@RequestParam("id") String id
@@ -42,4 +47,23 @@ public class MemberController {
 		
 		return path; 
 	}
+	
+	@RequestMapping("/memberRegisterOK")
+	public String memberRegisterOK(MemberVO vo,HttpServletRequest request) throws Exception {
+		//중복 체크
+		String errorMsg = ValidaroService.validateSignUp(vo);
+		String path = "";
+		
+		if(errorMsg == "") {
+			path = "home";
+		} else {
+			request.setAttribute("errMSG", errorMsg);
+			request.setAttribute("url", "memberRegister");
+			path = "error";
+		}
+		
+		memberService.insert(vo);
+		return path;
+	}
+	
 }

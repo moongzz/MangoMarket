@@ -27,5 +27,9 @@ public class MemberServiceImpl implements MemberService {
 		}
 	}
 	
+	@Override
+	public void insert(MemberVO vo) {
+		dao.insert(vo);
+	}
 
 }
