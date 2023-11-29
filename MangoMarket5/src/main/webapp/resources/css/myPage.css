@@ -1,0 +1,239 @@
+@charset "UTF-8";
+
+header {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 12vh;
+    background-color: white;
+    z-index: 1;
+    left: 0;
+    padding-left: 20vw;
+    border-bottom: 1px solid #eaebee;
+}
+header p{
+	cursor: pointer;
+	display: inline-block;
+}
+header .header_Text1{
+	color: #FFD067; 
+	font-family: 'Bungee', cursive; 
+	font-size: 30px;
+}
+header .header_Text2{
+	font-family: 'Bungee', cursive; 
+	font-size: 20px;
+}
+header img{
+	width: 50px; 
+	height: 50px;
+}
+section {
+    position: relative;
+	top: 20vh;
+    width: 60vw;
+    left: 20vw;
+}
+section #userBox{
+	padding-bottom: 5vh;
+}
+section #userBox #userImg {
+    border-radius: 50%;
+    width: 4vw;
+}
+section #userBox #nick {
+    display: inline-block;
+    position: absolute;
+    padding: 1%;
+    font-weight: bold;
+}
+section #userBox #emailphone p{
+    font-size: 17px;
+    padding: 1%;
+}
+section #userBox #emailphone span{
+    font-size: 16px;
+    color: #8b8b8b;
+}
+section #userBox input[type="button"] {
+    border: 2px solid white;
+    background-color: #FFD067;
+    color: white;
+    padding: 1vw 2vw;
+    border-radius: 15px;
+    font-weight: bold;
+    position: absolute;
+    right: 0vw;
+    top: 1vw;
+    cursor: pointer;
+}
+section #userBox input[type="button"]:hover{
+	border: 2px solid #FFD067;
+	background-color: white;
+    color: #FFD067;
+}
+section ul {
+    list-style: none;
+}
+section li {
+    float: left;
+    padding: 1vw 6vw;
+    border: 2px solid #ffd067;
+    border-radius: 25px;
+    margin-right: 2%;
+    color: #ffd067;
+    font-weight: bold;
+    cursor: pointer;
+}
+section li:hover{
+	border: 2px solid white;
+	color: white;
+	background-color: #ffd067;
+}
+
+#modal.modal-overlay {
+    width: 43vw;
+    height: 70vh;
+    position: absolute;
+    top: -6vh;
+    left: 9vw;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(1.5px);
+    border-radius: 10px;
+    z-index: 5;
+}
+
+#modal .modal-window {
+    border-radius: 10px;
+    width: 43vw;
+    height: 80vh;
+    position: relative;
+    overflow-y: scroll;
+    border: 2px solid #ffd067;
+    background-color: white;
+}    
+
+.close-area {
+    position: fixed;
+    display: inline;
+    padding-right: 10px;
+    cursor: pointer;
+    color: #ffd067;
+    z-index: 5;
+    top: 3vh;
+    right: 1vw;
+}
+
+.modal-window #positionBox {
+    position: absolute;
+    top: 10vh;
+    left: 9.5vw;
+}
+
+/* #positionBox input[type="submit"] {
+    border: none;
+    background-color: #4e8465;
+    color: white;
+    margin-top: 1vh;
+    padding: 2vh 8vw;
+    border-radius: 10px;
+} */
+
+#positionBox a {
+    padding: 0.5vw;
+    font-size: 12px;
+    color: #3f6b52;
+    text-decoration: none;
+}
+
+
+
+#phoneBox div {
+    width: 100%;
+    height: 7vh;
+    border: 2px solid #ffd067;
+    font-size: 16px;
+    margin-bottom: 1vh;
+    border-radius: 20px;
+}
+#phoneBox input {
+    height: 5vh;
+    font-size: 16px;
+    border: none;
+    width: 80%;
+    position: relative;
+    top: -1vh;
+}
+#phoneBox span {
+    padding: 1vw;
+    margin-left: -2vw;
+}
+#phoneBox {
+    text-align: center;
+    width: 25vw;
+    margin-bottom: 5vh;
+    margin-top: 7vh;
+}
+#phoneBox select {
+    height: 100%;
+    border: none;
+}
+
+#phoneBox #phoneNum {
+    width: 80%;
+    border: none;
+    top: 0.2vh;
+}
+section #modal input[type="submit"] {
+    width: 12vw;
+    border: none;
+    height: 5vh;
+    border-radius: 10px;
+    background-color: #ffd067;
+    color: white;
+    font-weight: bold;
+    margin-right: 1vw;
+}
+
+section input[type="reset"] {
+    width: 12vw;
+    border: none;
+    height: 5vh;
+    border-radius: 10px;
+    background-color: #4e8465;
+    color: white;
+    font-weight: bold;
+}
+
+input:focus {outline: none;}
+select:focus {outline: none;}
+#phoneBox #phoneBox2 {
+    border: 2px solid #ffd067;
+    border-radius: 20px;
+    height: 7vh;
+    overflow: hidden;
+}
+
+section input[type="submit"]:hover{
+	background-color: #ffbd2b;
+}
+section input[type="reset"]:hover{
+    background-color: #3f6b52;
+}
+
+#uploadUserImg input[type="submit"] {
+	display: none;
+	position: absolute;
+    top: -30px;
+    border: none;
+    background-color: white;
+    box-shadow: 2px 2px 3px #4e8465;
+    border-radius: 10px;
+}
+#imgFile{
+	display: none;
+}

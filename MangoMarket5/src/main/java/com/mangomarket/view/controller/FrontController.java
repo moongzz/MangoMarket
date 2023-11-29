@@ -16,4 +16,9 @@ public class FrontController {
 	public String memberRegister(Model model) {
 		return "memberRegister";
 	}
+	
+	@RequestMapping("/myPage")
+	public String myPage(Model model) {
+		return "myPage";
+	}
 }

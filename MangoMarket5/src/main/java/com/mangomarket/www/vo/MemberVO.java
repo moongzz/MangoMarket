@@ -1,5 +1,6 @@
 package com.mangomarket.www.vo;
 
+
 public class MemberVO {
 	private String id;
 	private String imgUrl;

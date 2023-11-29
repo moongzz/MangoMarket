@@ -1,5 +1,6 @@
 package com.mangomarket.www.service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import com.mangomarket.www.vo.MemberVO;
@@ -12,4 +13,5 @@ public interface MemberService {
 	
 	public void insert(MemberVO vo);
 
+	public void insertUserImg(MemberVO vo, HttpServletRequest request, HttpSession session);
 }

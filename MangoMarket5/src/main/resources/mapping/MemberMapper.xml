@@ -9,11 +9,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
         WHERE id = #{id} AND pwd = #{pwd}
     </select>
     
-    <select id="loginCheck" resultType="member">
+    <select id="getMember" resultType="member">
        select * from user where id=#{id}
     </select>
 
 	<insert id="insertMember">
 		INSERT INTO user(id, userNick, userName, email, phone, pwd) VALUES(#{id}, #{userNick}, #{userName}, #{email}, #{phone}, #{pwd})
 	</insert>
+	
+	<update id="insertUserImg">
+		UPDATE user SET imgUrl = #{imgUrl} WHERE userId = #{userId}
+	</update>
 </mapper>
