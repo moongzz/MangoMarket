@@ -36,9 +36,13 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void insertUserImg(MemberVO vo, HttpServletRequest request, HttpSession session) {
 		System.out.println("imgUrl = " + vo.getImgUrl());
-		dao.insertUserImg(vo);
-		MemberVO vo2 = dao.getMember(vo.getId());
+		MemberVO vo2 = dao.insertUserImg(vo);
 		session.setAttribute("userInfo", vo2);
+	}
+
+	@Override
+	public MemberVO userModify(MemberVO vo, int userId) {
+		return dao.userModify(vo, userId);
 	}
 
 }

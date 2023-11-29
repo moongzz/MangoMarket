@@ -21,7 +21,7 @@ public class MemberDAO {
 	private final String NAMESPACE = "com.mangomarket.www.dao.MemberDAO";
 	
 	public int login(MemberVO vo) throws Exception{
-		return mybatis.selectOne(NAMESPACE +".login", vo);
+		return sqlSession.selectOne(NAMESPACE +".login", vo);
 	}
 	
 	public MemberVO getMember(String id) {
@@ -31,11 +31,18 @@ public class MemberDAO {
 	public void insert(MemberVO vo) {
 		System.out.println("MemberVO [id=" + vo.getId() + ", imgUrl=" + vo.getImgUrl() + ", userNick=" + vo.getUserNick() + ", userName=" + vo.getUserName()
 				+ ", email=" + vo.getEmail() + ", phone=" + vo.getPhone() + ", pwd=" + vo.getPwd() + ", userId=" + vo.getUserId() + "]");
-		mybatis.insert(NAMESPACE + ".insertMember", vo);
+		sqlSession.insert(NAMESPACE + ".insertMember", vo);
 	}
 	
-	public void insertUserImg(MemberVO vo) {
-		mybatis.update(NAMESPACE + ".insertUserImg", vo);
+	public MemberVO insertUserImg(MemberVO vo) {
+		sqlSession.update(NAMESPACE + ".insertUserImg", vo);
+		return sqlSession.selectOne(NAMESPACE + ".getMember", vo.getUserId());
+	}
+	
+	public MemberVO userModify(MemberVO vo, int userId) {
+		vo.setUserId(userId);
+		sqlSession.update(NAMESPACE + ".userModify", vo);
+		return sqlSession.selectOne(NAMESPACE + ".getMember", userId);
 	}
 	
 }

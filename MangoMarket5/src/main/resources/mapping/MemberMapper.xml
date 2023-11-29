@@ -20,4 +20,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
 	<update id="insertUserImg">
 		UPDATE user SET imgUrl = #{imgUrl} WHERE userId = #{userId}
 	</update>
+	
+	<update id="userModify">
+		UPDATE user SET userNick=#{userNick}, email=#{email}, phone=#{phone} WHERE userId = #{userId}
+	</update>
 </mapper>

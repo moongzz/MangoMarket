@@ -14,4 +14,6 @@ public interface MemberService {
 	public void insert(MemberVO vo);
 
 	public void insertUserImg(MemberVO vo, HttpServletRequest request, HttpSession session);
+	
+	public MemberVO userModify(MemberVO vo, int userId);
 }

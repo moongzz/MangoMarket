@@ -88,4 +88,11 @@ public class MemberController {
 		memberService.insertUserImg(vo, request, seesion);
 		return "home";
 	}
+	
+	@RequestMapping("/userModify")
+	public String userModify(MemberVO vo, int userId, HttpSession session, HttpServletRequest request) {
+		MemberVO vo2 = memberService.userModify(vo, userId);
+		request.getSession().setAttribute("userInfo", vo2);
+		return "home";
+	}
 }
