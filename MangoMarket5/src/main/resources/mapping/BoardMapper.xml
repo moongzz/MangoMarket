@@ -2,5 +2,24 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="BoardDAO">
+<mapper namespace="com.mangomarket.www.dao.MemberDAO">
+
+	<insert id="insertGood">
+		INSERT INTO goods (sellerId, title, content, price, categoryId) 
+		values(#{sellerId}, #{title}, #{content}, #{price}, #{categoryId});
+	</insert>
+	
+	<insert id="insertRegion">
+		INSERT INTO RegionList (regionName, goodsId) VALUES (#{regionName}, #{goodsId});
+	</insert>	
+	
+	<select id="getGoodsId" resultType="int">
+	    SELECT goodsId
+	    FROM goods
+	    WHERE sellerId = #{sellerId} and title = #{title} and content = #{content} and price = #{price} and categoryId = #{categoryId};
+	</select>
+	
+	<insert id="insertPictureGood">
+		INSERT INTO picturegoods (imgUrl, goodsId) values(#{imgUrl}, #{goodsId});
+	</insert>
 </mapper>

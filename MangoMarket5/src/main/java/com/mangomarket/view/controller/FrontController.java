@@ -21,4 +21,9 @@ public class FrontController {
 	public String myPage(Model model) {
 		return "myPage";
 	}
+	
+	@RequestMapping("/writePost")
+	public String writePost(Model model) {
+		return "writePost";
+	}
 }

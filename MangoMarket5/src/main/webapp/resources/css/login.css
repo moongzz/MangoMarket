@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+#loginBox2 {
+   	border: 1px solid white;
+    width: 30vw;
+    height: 80vh;
+    margin-top: 15vh;
+    margin-left: 35vw;
+    text-align: center;
+    background-image: url(../images/loginImg2.png);
+    background-size: cover;
+    border-radius: 30px;
+}
+
+input:focus {outline: none;}
+
+#loginBox2 #idBox2 {
+    width: 60%;
+    height: 6vh;
+    margin-left: 20%;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 1vh;
+	margin-top: 10vh;
+}
+
+#idBox2 i {
+    padding: 1vh;
+    color: #3f6b52;
+}
+#pwBox2 i {
+    padding: 1vh;
+    color: #3f6b52;
+}
+
+#loginBox2 #idBox2 input[type="text"] {
+    width: 80%;
+    height: 100%;
+    border: none;
+}
+
+#loginBox2 #pwBox2 {
+    width: 60%;
+    height: 6vh;
+    margin-left: 20%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+#loginBox2 #pwBox2 input[type="password"] {
+    width: 80%;
+    height: 100%;
+    border: none;
+}
+
+#loginBox2 input[type="submit"] {
+    border: none;
+    background-color: #fff;
+    padding: 1vw 3vw;
+    border-radius: 30px;
+    margin-top: 1vh;
+}
+
+#loginBox2 a {
+    font-size: 15px;
+    padding: 1vw;
+    text-decoration: none;
+    color: black;
+}
+
+#loginBox2 p {
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+}
