@@ -18,6 +18,7 @@ public class ValidaroDAO {
 	
 	private final String NAMESPACE = "com.mangomarket.www.dao.ValidaroDAO";
 	
+	//회원가입 유효성 체크
 	public int isUserIDUnique(String id) {
 		return mybatis.selectOne(NAMESPACE + ".isUserIDUnique", id);
 	}
@@ -33,4 +34,5 @@ public class ValidaroDAO {
 	public int isPhoneDuplicate(String phone) {
 		return mybatis.selectOne(NAMESPACE + ".isPhoneDuplicate", phone);
 	}
+	
 }
