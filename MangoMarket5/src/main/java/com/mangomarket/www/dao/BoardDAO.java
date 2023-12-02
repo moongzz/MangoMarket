@@ -27,14 +27,14 @@ public class BoardDAO {
 	}
 	
 	public List<BoardVO> listBoard(int menuNum, String realPath){
-		List<BoardVO> list = mybatis.selectList(NAMESPACE + ".selectGoods", menuNum);
+		List<BoardVO> list = getGoods(menuNum);
 		List<BoardVO> list2 = new ArrayList<BoardVO>();
 		
 		for(BoardVO vo : list) {
 			BoardVO vo2 = null;
-			vo2 = mybatis.selectOne(NAMESPACE + ".selectRegionList", vo.getGoodsId());
+			vo2 = getRegionList(vo.getGoodsId());
 			vo.setRegionName(vo2.getRegionName());
-			vo2 = mybatis.selectOne(NAMESPACE + ".selectPictureGoods", vo.getGoodsId());
+			vo2 = getPictureGoods(vo.getGoodsId());
 			vo.setImgUrl(vo2.getImgUrl());
 			vo.setRealPath(realPath);
 			
@@ -42,5 +42,45 @@ public class BoardDAO {
 		}
 		System.out.println("BoardDAO list2 = " + list2);
 		return list2;
+	}
+	
+	public List<BoardVO> listBoardFilter(int category, int category2){
+		BoardVO vo3 = new BoardVO();
+		vo3.setCategory(category + "");
+		vo3.setCategory2(category2 + "");
+		List<BoardVO> list = new ArrayList<BoardVO>();
+		
+		if(category2 == 0) list = getGoods(category);
+		else list = getGoodsFilter(vo3);
+		
+		List<BoardVO> list2 = new ArrayList<BoardVO>();
+		for(BoardVO vo : list) {
+			BoardVO vo2 = null;
+			vo2 = getRegionList(vo.getGoodsId());
+			vo.setRegionName(vo2.getRegionName());
+			vo2 = getPictureGoods(vo.getGoodsId());
+			vo.setImgUrl(vo2.getImgUrl());
+			vo.setRlId(vo2.getRlId());
+			
+			list2.add(vo);
+		}
+		return list2;
+		
+	}
+	
+	private List<BoardVO> getGoods(int category){
+		return mybatis.selectList(NAMESPACE + ".selectGoods", category);
+	}
+	
+	private List<BoardVO> getGoodsFilter(BoardVO vo){
+		return mybatis.selectList(NAMESPACE + ".selectGoodsFilter", vo);
+	}
+	
+	private BoardVO getPictureGoods(int goodsId){
+		return mybatis.selectOne(NAMESPACE + ".selectPictureGoods", goodsId);
+	}
+	
+	private BoardVO getRegionList(int goodsId){
+		return mybatis.selectOne(NAMESPACE + ".selectRegionList", goodsId);
 	}
 }

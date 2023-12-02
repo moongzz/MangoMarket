@@ -34,4 +34,16 @@ public class DataController {
 		
 		return map;
 	}
+	
+	@RequestMapping(value = "/goodListOKFilter", method = {RequestMethod.GET, RequestMethod.POST})
+	public Map<String, BoardVO> goodListOKFilter(@RequestParam("category") int category,
+												@RequestParam("category2") int category2){
+		Map<String, BoardVO> map = new HashMap<String, BoardVO>();
+		List<BoardVO> list = boardService.listBoardFilter(category, category2);
+		for(int i = 0; i < list.size(); i++) {
+			map.put(i + "", list.get(i));
+		}
+		
+		return map;
+	}
 }

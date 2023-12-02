@@ -25,4 +25,10 @@ public class BoardServiceImpl implements BoardService {
 		return list;
 	}
 
+	@Override
+	public List<BoardVO> listBoardFilter(int category, int category2) {
+		List<BoardVO> list = dao.listBoardFilter(category, category2);
+		return list;
+	}
+
 }

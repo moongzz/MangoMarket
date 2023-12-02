@@ -9,4 +9,6 @@ public interface BoardService {
 	void insertGood(BoardVO vo);
 	
 	List<BoardVO> listBoard(int menuNum, String realPath);
+	
+	List<BoardVO> listBoardFilter(int category, int category2);
 }
