@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.mangomarket.www.dao.MemberDAO">
+<mapper namespace="com.mangomarket.www.dao.BoardDAO">
 
 	<insert id="insertGood">
 		INSERT INTO goods (sellerId, title, content, price, categoryId) 
@@ -22,4 +22,18 @@
 	<insert id="insertPictureGood">
 		INSERT INTO picturegoods (imgUrl, goodsId) values(#{imgUrl}, #{goodsId});
 	</insert>
+	
+	
+	<select id="selectGoods" resultType="board">
+		SELECT * FROM goods WHERE categoryId BETWEEN #{categoryId}*10 and #{categoryId}*10+9;
+	</select>
+	
+	<select id="selectRegionList" resultType="board">
+		SELECT * FROM regionlist WHERE rlId = #{goodsId};
+	</select>
+	
+	<select id ="selectPictureGoods" resultType="board">
+		SELECT * FROM picturegoods WHERE goodsId = #{goodsId};
+	</select>
+	
 </mapper>

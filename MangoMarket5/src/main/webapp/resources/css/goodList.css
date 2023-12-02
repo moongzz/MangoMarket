@@ -1,0 +1,72 @@
+@charset "UTF-8";
+/* mainMenu 글씨 */
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.mainMenu {
+    width: 80vw;
+    height: 7vh;
+    position: fixed;
+    top: 12vh;
+    left: 10vw;
+    background-color: #ffd067;
+    border-radius: 10px;
+    color: white;
+}
+.menus {
+    list-style: none;
+    text-align: center;
+    margin-left: -3vw;
+}
+.menus li {
+    display: inline-block;
+    font-family: 'GmarketSansMedium';
+    padding: 1% 1%;
+    margin-top: -1.5vh;
+}
+
+.menus li:hover{
+	color: #3F6B52;
+	cursor: pointer;
+}
+section {
+    width: 80vw;
+    height: 100vh;
+    margin-left: 10vw;
+    margin-top: 21vh;
+}
+section .itemBox {
+    width: 19vw;
+    height: 40vh;
+    float: left;
+    margin-right: 10px;
+   	cursor: pointer;
+   	border-radius: 10%;
+}
+.itemBox .imgBox {
+    width: 100%;
+    height: 50%;
+    overflow: hidden;
+    border-radius: 10%;
+}
+.itemBox .imgBox img {
+    width: 100%;
+    height: 100%;
+}
+.itemBox .price {
+    font-weight: bold;
+}
+.itemBox .address {
+    font-size: 13px;
+}
+.itemBox span {
+    font-size: 13px;
+    color: #868e96;
+}
+.itemBox:hover{
+    box-shadow: 10px 5px 5px #eee;
+}
+input:focus {outline: none;}
