@@ -40,4 +40,8 @@
 	<select id = "selectGoodsFilter" resultType="board">
 		SELECT * FROM goods WHERE categoryId % 10 = #{category2} and categoryId BETWEEN #{category}*10 and #{category}*10+9;
 	</select>
+	
+	<select id="getGood" resultType="board">
+		SELECT * FROM goods WHERE goodsId = #{goodsId};
+	</select>
 </mapper>

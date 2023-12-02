@@ -11,4 +11,6 @@ public interface BoardService {
 	List<BoardVO> listBoard(int menuNum, String realPath);
 	
 	List<BoardVO> listBoardFilter(int category, int category2);
+	
+	BoardVO showGood(int goodsId);
 }

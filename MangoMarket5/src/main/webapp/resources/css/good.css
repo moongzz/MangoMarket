@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+section {
+    padding-top: 11vh;
+    width: 50vw;
+	height: 150vh;
+    margin-left: 25vw;
+}
+
+#imgBox {
+    overflow: hidden;
+    width: 100%;
+    height: 30vw;
+    border-radius: 10px;
+    margin-bottom: 1vh;
+}
+
+#imgBox img {
+    width: 100%;
+    height: 100%;
+}
+
+section #userBox {
+    border-bottom: #f2f3f6 1px solid;
+    padding-bottom: 1vh;
+    margin-top: 0;
+    margin-left: 0;
+    position: relative;
+}
+
+#userBox img {
+    border-radius: 50%;
+    width: 4vw;
+}
+
+#userBox #userName {
+    display: inline-block;
+    position: absolute;
+    margin-left: 1%;
+}
+
+#userBox #userName {
+    display: inline-block;
+    position: absolute;
+    margin-left: 1%;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#userName span {
+    font-weight: normal;
+    font-size: 14px;
+}
+#text1 {
+    font-weight: 600;
+    font-size: 20px;
+}
+.text2 {
+    font-size: 13px;
+    color: #868e96;
+    margin-top: -15px;
+}
+#content {
+    line-height: 1.5;
+    padding-top: 1vh;
+}
+#text3 {
+    font-weight: bold;
+    font-size: 19px;
+    line-height: 0.5;
+    position: absolute;
+    bottom: 0;
+    right: 2vw;
+}
+
+#userBox input[type=submit] {
+    position: absolute;
+    right: 1vw;
+    padding: 1vh 2vw;
+    border: none;
+    border-radius: 10px;
+    background-color: #ffd067;
+    color: white;
+    font-weight: bold;
+    top: 2vh;
+}
+
+div#textBox {
+    border: 2px solid #f2f3f6;
+    height: 50vh;
+    padding: 1vw;
+    border-radius: 10px;
+    position: relative;	
+}
+
+#text4 {
+    position: absolute;
+    bottom: 0;
+}

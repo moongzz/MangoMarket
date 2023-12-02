@@ -45,4 +45,9 @@ public class MemberServiceImpl implements MemberService {
 		return dao.userModify(vo, userId);
 	}
 
+	@Override
+	public MemberVO selectUser(int userId) {
+		return dao.selectUser(userId);
+	}
+
 }

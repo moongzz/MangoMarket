@@ -31,4 +31,10 @@ public class BoardServiceImpl implements BoardService {
 		return list;
 	}
 
+	@Override
+	public BoardVO showGood(int goodsId) {
+		BoardVO vo = dao.showGood(goodsId);
+		return vo;
+	}
+
 }

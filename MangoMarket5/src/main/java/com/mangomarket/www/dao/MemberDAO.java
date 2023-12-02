@@ -45,4 +45,10 @@ public class MemberDAO {
 		return sqlSession.selectOne(NAMESPACE + ".getMember", userId);
 	}
 	
+	public MemberVO selectUser(int userId) {
+		MemberVO vo = new MemberVO();
+		vo = mybatis.selectOne(NAMESPACE + ".selectUser", userId);
+		return vo;
+	}
+	
 }

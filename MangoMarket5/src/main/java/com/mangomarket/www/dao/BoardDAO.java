@@ -68,8 +68,24 @@ public class BoardDAO {
 		
 	}
 	
+	public BoardVO showGood(int goodsId) {
+		BoardVO vo = new BoardVO();
+		BoardVO vo2 = new BoardVO();
+		vo = getGood(goodsId);
+		vo2 = getRegionList(goodsId);
+		vo2 = getPictureGoods(goodsId);
+		vo.setRegionName(vo2.getRegionName());
+		vo.setRlId(vo2.getRlId());
+		vo.setImgUrl(vo2.getImgUrl());
+		return vo;
+	}
+	
 	private List<BoardVO> getGoods(int category){
 		return mybatis.selectList(NAMESPACE + ".selectGoods", category);
+	}
+	
+	private BoardVO getGood(int goodsId) {
+		return mybatis.selectOne(NAMESPACE + ".getGood", goodsId);
 	}
 	
 	private List<BoardVO> getGoodsFilter(BoardVO vo){

@@ -7,13 +7,17 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.mangomarket.www.service.BoardService;
+import com.mangomarket.www.service.MemberService;
 import com.mangomarket.www.service.ValidaroService;
 import com.mangomarket.www.vo.BoardVO;
+import com.mangomarket.www.vo.MemberVO;
 
 @Controller
 public class PostController {
@@ -23,6 +27,9 @@ public class PostController {
 	
 	@Autowired
 	private ValidaroService validaroService;
+	
+	@Autowired
+	private MemberService memberService;
 	
 	@RequestMapping("/writePostOK")
 	public String writePost(@ModelAttribute("boardVO") BoardVO vo,
@@ -60,5 +67,18 @@ public class PostController {
 		}
 		
 		return path;
+	}
+	
+	@RequestMapping("/showGood")
+	public String showGood(@RequestParam("goodsId") int goodsId, Model model) {
+		BoardVO bvo = new BoardVO();
+		MemberVO mvo = new MemberVO();
+		
+		bvo = boardService.showGood(goodsId);
+		model.addAttribute("bvo", bvo);
+		mvo = memberService.selectUser(bvo.getSellerId());
+		model.addAttribute("mvo", mvo);
+		
+		return "good";
 	}
 }
