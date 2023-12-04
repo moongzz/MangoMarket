@@ -2,6 +2,7 @@ package com.mangomarket.view.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,6 +19,7 @@ import com.mangomarket.www.service.MemberService;
 import com.mangomarket.www.service.ValidaroService;
 import com.mangomarket.www.vo.BoardVO;
 import com.mangomarket.www.vo.MemberVO;
+import com.mangomarket.www.vo.WishListVO;
 
 @Controller
 public class PostController {
@@ -80,5 +82,23 @@ public class PostController {
 		model.addAttribute("mvo", mvo);
 		
 		return "good";
+	}
+	
+	@RequestMapping("/wishList")
+	public String wishList(@RequestParam("goodsId") String goodsId, @RequestParam("userId") String userId) {
+		WishListVO vo = new WishListVO();
+		vo.setGoodsId(Integer.parseInt(goodsId));
+		vo.setUserId(Integer.parseInt(userId));
+		
+		boardService.wishList(vo);
+		return "home";
+	}
+	
+	@RequestMapping("/wishListShow")
+	public String wishListShow(@RequestParam("userId") String userId, Model model) {
+		List<BoardVO> list = boardService.showWishList(Integer.parseInt(userId));
+		model.addAttribute("list", list);
+		
+		return "wishList";
 	}
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.mangomarket.www.vo.BoardVO;
+import com.mangomarket.www.vo.WishListVO;
 
 @Repository
 public class BoardDAO {
@@ -38,6 +39,9 @@ public class BoardDAO {
 			vo.setImgUrl(vo2.getImgUrl());
 			vo.setRealPath(realPath);
 			
+			vo.setCountWishList(countWishList(vo.getGoodsId()));
+			vo.setCountChatRoom(countChatRoom(vo.getGoodsId()));
+			
 			list2.add(vo);
 		}
 		System.out.println("BoardDAO list2 = " + list2);
@@ -62,6 +66,9 @@ public class BoardDAO {
 			vo.setImgUrl(vo2.getImgUrl());
 			vo.setRlId(vo2.getRlId());
 			
+			vo.setCountWishList(countWishList(vo.getGoodsId()));
+			vo.setCountChatRoom(countChatRoom(vo.getGoodsId()));
+			
 			list2.add(vo);
 		}
 		return list2;
@@ -77,8 +84,28 @@ public class BoardDAO {
 		vo.setRegionName(vo2.getRegionName());
 		vo.setRlId(vo2.getRlId());
 		vo.setImgUrl(vo2.getImgUrl());
+		vo.setCountWishList(countWishList(vo.getGoodsId()));
+		vo.setCountChatRoom(countChatRoom(vo.getGoodsId()));
 		return vo;
 	}
+	
+	public List<BoardVO> showWishList(int userId){
+		List<WishListVO> userWishList = new ArrayList<WishListVO>();
+		List<BoardVO> wishListGoods = new ArrayList<BoardVO>();
+		
+		userWishList = mybatis.selectList(NAMESPACE + ".getUserWishList", userId);
+		for(WishListVO vo : userWishList) {
+			BoardVO bvo = getGood(vo.getGoodsId());
+			BoardVO imgbvo = getPictureGoods(bvo.getGoodsId());
+			bvo.setImgUrl(imgbvo.getImgUrl());
+			bvo.setCountWishList(countWishList(vo.getGoodsId()));
+			bvo.setCountChatRoom(countChatRoom(vo.getGoodsId()));
+			wishListGoods.add(bvo);
+		}
+		
+		return wishListGoods;
+	}
+	
 	
 	private List<BoardVO> getGoods(int category){
 		return mybatis.selectList(NAMESPACE + ".selectGoods", category);
@@ -98,5 +125,13 @@ public class BoardDAO {
 	
 	private BoardVO getRegionList(int goodsId){
 		return mybatis.selectOne(NAMESPACE + ".selectRegionList", goodsId);
+	}
+	
+	private int countWishList(int goodsId) {
+		return mybatis.selectOne(NAMESPACE + ".countWishList", goodsId);
+	}
+	
+	private int countChatRoom(int goodsId) {
+		return mybatis.selectOne(NAMESPACE + ".countChatRoom", goodsId);
 	}
 }

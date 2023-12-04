@@ -39,7 +39,7 @@
 					<p class="text2">${bvo.createdAt }</p>
 					<p id="text3"><fmt:formatNumber value="${bvo.price}" pattern="#,###"/>원</p>
 					<p id="content">${bvo.content}</p>
-					<p class="text2" id="text4"><i class="fa-regular fa-heart"></i>${bvo.countWishList } ∙ <i class="fa-regular fa-comment"></i>${bvo.countChatRoom }</p>
+					<p class="text2" id="text4"><i class="fa-regular fa-heart" onclick="document.location.href='wishList?goodsId=${bvo.goodsId}&userId=${userInfo.userId }'"></i>${bvo.countWishList } ∙ <i class="fa-regular fa-comment"></i>${bvo.countChatRoom }</p>
 				</div>
 			</section>
 		</c:when>

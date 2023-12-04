@@ -6,13 +6,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mangomarket.www.dao.BoardDAO;
+import com.mangomarket.www.dao.WishListDAO;
 import com.mangomarket.www.vo.BoardVO;
+import com.mangomarket.www.vo.WishListVO;
 
 @Service("boardService")
 public class BoardServiceImpl implements BoardService {
 
 	@Autowired
 	private BoardDAO dao;
+	
+	@Autowired
+	private WishListDAO wishListDao;
 	
 	@Override
 	public void insertGood(BoardVO vo) {
@@ -35,6 +40,21 @@ public class BoardServiceImpl implements BoardService {
 	public BoardVO showGood(int goodsId) {
 		BoardVO vo = dao.showGood(goodsId);
 		return vo;
+	}
+
+	@Override
+	public void wishList(WishListVO vo) {
+		if(wishListDao.checkWishList(vo) != null) {
+			wishListDao.deleteWishList(vo);
+		} else {
+			wishListDao.wishList(vo);
+		}
+	}
+
+	@Override
+	public List<BoardVO> showWishList(int userId) {
+		List<BoardVO> list = dao.showWishList(userId);
+		return list;
 	}
 
 }

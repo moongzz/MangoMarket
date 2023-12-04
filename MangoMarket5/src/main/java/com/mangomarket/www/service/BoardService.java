@@ -3,6 +3,7 @@ package com.mangomarket.www.service;
 import java.util.List;
 
 import com.mangomarket.www.vo.BoardVO;
+import com.mangomarket.www.vo.WishListVO;
 
 public interface BoardService {
 
@@ -13,4 +14,8 @@ public interface BoardService {
 	List<BoardVO> listBoardFilter(int category, int category2);
 	
 	BoardVO showGood(int goodsId);
+	
+	void wishList(WishListVO vo);
+	
+	List<BoardVO> showWishList(int userId);
 }

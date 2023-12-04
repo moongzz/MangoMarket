@@ -44,4 +44,17 @@
 	<select id="getGood" resultType="board">
 		SELECT * FROM goods WHERE goodsId = #{goodsId};
 	</select>
+	
+	
+	<select id="countWishList" resultType="int">
+		SELECT COUNT(*) FROM wishList where goodsId = #{goodsId};
+	</select>
+	
+	<select id="countChatRoom" resultType="int">
+		SELECT COUNT(*) FROM chatRoom where goodsId = #{goodsId};
+	</select>
+	
+	<select id="getUserWishList" resultType="wishList">
+		SELECT * FROM wishList WHERE userId = #{userId};
+	</select>
 </mapper>

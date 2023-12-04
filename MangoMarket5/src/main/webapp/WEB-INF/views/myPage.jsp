@@ -49,9 +49,9 @@
 			<input id="modifyBtn" type="button" value="수정하기">
 		</div>
 		<ul>
-			<li onclick="document.location.href='wishListShow.do?userId=${userInfo.userId }'"><i class="fa-regular fa-heart"></i> 관심목록</li>
-			<li onclick="document.location.href='sellHistory.do?userId=${userInfo.userId }'"><i class="fa-solid fa-receipt"></i> 판매내역</li>
-			<li onclick="document.location.href='buyHistory.do?userId=${userInfo.userId }'"><i class="fa-solid fa-bag-shopping"></i> 구매내역</li>
+			<li onclick="document.location.href='wishListShow?userId=${userInfo.userId }'"><i class="fa-regular fa-heart"></i> 관심목록</li>
+			<li onclick="document.location.href='sellHistory?userId=${userInfo.userId }'"><i class="fa-solid fa-receipt"></i> 판매내역</li>
+			<li onclick="document.location.href='buyHistory?userId=${userInfo.userId }'"><i class="fa-solid fa-bag-shopping"></i> 구매내역</li>
 		</ul>
 		<div id="modal" class="modal-overlay">
 		    <div class="modal-window">

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.mangomarket.www.dao.WishListDAO">
+  	
+  	<insert id="wishList">
+		INSERT INTO wishList (goodsId, userId) values(#{goodsId}, #{userId});
+	</insert>
+	
+	<select id="checkWishList" resultType="wishList">
+		SELECT * FROM wishList WHERE goodsId = #{goodsId} and userId =  #{userId};
+	</select>
+	
+	<delete id="deleteWishList">
+		DELETE FROM wishList WHERE goodsId = #{goodsId} and userId =  #{userId};
+	</delete>
+	
+  </mapper>
