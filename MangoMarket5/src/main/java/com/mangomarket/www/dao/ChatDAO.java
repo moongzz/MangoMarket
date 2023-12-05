@@ -26,4 +26,9 @@ public class ChatDAO {
 		List<ChatVO> chatList = mybatis.selectList(NAMESPACE + ".selectChat", crId);
 		return chatList;
 	}
+	
+	public List<ChatRoomVO> showChatRoom(int userId){
+		List<ChatRoomVO> chatRoomList = mybatis.selectList(NAMESPACE + ".selectChatRoomList", userId);
+		return chatRoomList;
+	}
 }

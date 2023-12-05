@@ -15,7 +15,7 @@ public class ChatRoomVO {
     
     private String title;
     
-    private String saveFileName;
+    private String imgUrl;
     
     private int countChatRoom;
 
@@ -107,12 +107,12 @@ public class ChatRoomVO {
 		this.title = title;
 	}
 
-	public String getSaveFileName() {
-		return saveFileName;
+	public String getImgUrl() {
+		return imgUrl;
 	}
 
-	public void setSaveFileName(String saveFileName) {
-		this.saveFileName = saveFileName;
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 
 	public int getCountChatRoom() {

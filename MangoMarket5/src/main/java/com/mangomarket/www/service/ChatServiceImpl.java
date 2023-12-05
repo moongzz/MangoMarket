@@ -26,4 +26,10 @@ public class ChatServiceImpl implements ChatService {
 		return chatList;
 	}
 
+	@Override
+	public List<ChatRoomVO> showChatRoom(int userId) {
+		List<ChatRoomVO> chatRoomList = dao.showChatRoom(userId);
+		return chatRoomList;
+	}
+
 }

@@ -10,4 +10,6 @@ public interface ChatService {
 	void setChatRoom(ChatRoomVO crvo);
 	
 	List<ChatVO> showChat(int crId);
+
+	List<ChatRoomVO> showChatRoom(int userId);
 }

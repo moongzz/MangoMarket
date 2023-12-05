@@ -64,4 +64,11 @@ public class ChatController {
 		
 		return path;
 	}
+	
+	@RequestMapping("/chatRoom")
+	public String chatRooms(@RequestParam("userId") int userId, Model model) {
+		List<ChatRoomVO> chatRoomList = chatService.showChatRoom(userId);
+		model.addAttribute("chatRoomList", chatRoomList);
+		return "chatRoom";
+	}
 }

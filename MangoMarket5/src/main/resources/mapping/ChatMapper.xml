@@ -16,4 +16,12 @@
 		SELECT c.*, u.userNick FROM chats c JOIN user u ON c.fromId = u.userId WHERE c.crId = #{crId};
 	</select>
 	
+	<select id="selectChatRoomList" resultType="chatRoom">
+		SELECT c.*, m.userNick AS buyerNick, m2.userNick AS sellerNick, g.title, pi.imgUrl FROM chatroom c 
+		INNER JOIN user m ON c.buyerId = m.userId
+		INNER JOIN user m2 ON c.sellerId = m2.userId
+		INNER JOIN goods g ON c.goodsId = g.goodsId
+		INNER JOIN picturegoods pi ON g.goodsId = pi.goodsId
+		WHERE c.buyerId = #{userId} OR c.sellerId = #{userId};
+	</select>
  </mapper>
