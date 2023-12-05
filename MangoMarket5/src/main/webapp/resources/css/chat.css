@@ -1,0 +1,151 @@
+@charset "UTF-8";
+section {
+    width: 50vw;
+    height: 80vh;
+    margin-left: 25vw;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 15vh;
+}
+section #chatHeader {
+    width: 100%;
+    height: 4vh;
+    background-color: #FFC107;
+    text-align: center;
+}
+section #chatHeader #chatIcon{
+	color: white;
+    line-height: 4vh;
+}
+section #goodBox {
+    width: 100%;
+    height: 15vh;
+    border-bottom: 1px solid #eeeeee;
+}
+section #goodBox #imgBox {
+    width: 14vh;
+    height: 14vh;
+    margin-left: 0.5vh;
+    margin-top: 0.5vh;
+    border-radius: 10px;
+    overflow: hidden;
+    float: left;
+}
+section #goodBox #imgBox img {
+    width: 100%;
+    height: 100%;
+}
+#text2 {
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 0;
+    padding: 1vh;
+    display: inline-block;
+    line-height: 0;
+}
+#text1 {
+    font-size: 15px;
+    padding: 1vh;
+    display: inline-block;
+}
+
+section #chatBox {
+    height: 5vh;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+#chatBox form {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+#chatBox #textBox {
+    height: 90%;
+    width: 95%;
+    border: none;
+    background-color: #F1F2F6;
+    border-radius: 20px;
+    float: left;
+}
+#chatBox button {
+    font-size: 20px;
+    border: none;
+    background-color: white;
+    color: #c6c6c6;
+}
+
+#chatBox #textBox input[type="text"] {
+    width: 90%;
+    height: 95%;
+    border: none;
+    background-color: #F1F2F6;
+}
+input:focus {outline: none;}
+
+
+
+
+#showChatBox div#senderMessage {
+    height: 1%;
+    margin: 1%;
+}
+#showChatBox #senderMessage #contentText {
+    float: right;
+    padding: 1%;
+    border-radius: 20px;
+    background-color: #FFC107;
+    color: white;
+    font-size: 15px;
+    margin: 0;
+}
+div#showChatBox {
+    height: 55vh;
+    overflow: scroll;
+}
+#showChatBox::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 오페라, 엣지 */
+}
+
+#showChatBox div#receiverMessage {
+    height: 1%;
+    margin: 1%;
+}
+#showChatBox div#receiverMessage #contentText {
+    padding: 1%;
+    border-radius: 20px;
+    background-color: #eeeeee;
+    font-size: 15px;
+    margin: 0;
+    display: inline;
+}
+
+#receiverMessage p#createdAtText {
+    padding: 1%;
+    font-size: 10px;
+    display: inline;
+    color: #9f9f9f;
+}
+
+input#sellBtn {
+    margin-left: 73.4%;
+    margin-top: -15%;
+    border: none;
+    padding: 0.5vw 2vw;
+    border-radius: 0 0 10px 10px;
+    background-color: #6c9680;
+    color: white;
+    font-weight: bold;
+}
+
+div#sellBtn {
+    margin-left: 67%;
+    margin-top: -13.3%;
+    border: none;
+    padding: 0.5vw 2vw;
+    border-radius: 0 0 10px 10px;
+    background-color: #6c9680;
+    color: white;
+    font-weight: bold;
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.mangomarket.www.dao.ChatDAO">
+ 
+ 	<insert id="insertChatRoom">
+		INSERT INTO chatRoom (buyerId, buyerStatus, sellerId, sellerStatus, goodsId) 
+		values(#{buyerId}, #{buyerStatus}, #{sellerId}, #{sellerStatus}, #{goodsId});
+	</insert>
+ 	<select id="selectChatRoom" resultType="chatRoom">
+		SELECT * FROM chatroom where buyerId = #{buyerId} AND sellerId = #{sellerId} AND goodsId = #{goodsId};
+	</select>
+	
+	<select id="selectChat" resultType="chat">
+		SELECT c.*, u.userNick FROM chats c JOIN user u ON c.fromId = u.userId WHERE c.crId = #{crId};
+	</select>
+	
+ </mapper>

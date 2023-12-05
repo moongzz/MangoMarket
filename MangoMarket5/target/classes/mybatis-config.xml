@@ -7,11 +7,14 @@
  		<typeAlias type="com.mangomarket.www.vo.BoardVO" alias="board"/>
  		<typeAlias type="com.mangomarket.www.vo.MemberVO" alias="member"/>
  		<typeAlias type="com.mangomarket.www.vo.WishListVO" alias="wishList"/>
+ 		<typeAlias type="com.mangomarket.www.vo.ChatRoomVO" alias="chatRoom"/>
+ 		<typeAlias type="com.mangomarket.www.vo.ChatVO" alias="chat"/>
  	</typeAliases>
  	<mappers>
  		<mapper resource="mapping/BoardMapper.xml"/>
  		<mapper resource="mapping/MemberMapper.xml"/>
  		<mapper resource="mapping/ValidaroMapper.xml"/>
  		<mapper resource="mapping/WishListMapper.xml"/>
+ 		<mapper resource="mapping/ChatMapper.xml"/>
  	</mappers>
  </configuration>
