@@ -50,4 +50,9 @@ public class MemberServiceImpl implements MemberService {
 		return dao.selectUser(userId);
 	}
 
+	@Override
+	public void logout(HttpSession session) {
+		session.invalidate();
+	}
+
 }

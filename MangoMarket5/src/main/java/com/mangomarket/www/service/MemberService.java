@@ -11,6 +11,8 @@ public interface MemberService {
 	
 	public void loginCheck(MemberVO vo, HttpSession session);
 	
+	public void logout(HttpSession session);
+	
 	public void insert(MemberVO vo);
 
 	public void insertUserImg(MemberVO vo, HttpServletRequest request, HttpSession session);

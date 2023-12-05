@@ -52,6 +52,12 @@ public class MemberController {
 		return path; 
 	}
 	
+	@RequestMapping("/logout")
+	public String logout(HttpSession session) {
+		memberService.logout(session);
+		return "home";
+	}
+	
 	@RequestMapping("/memberRegisterOK")
 	public String memberRegisterOK(MemberVO vo,HttpServletRequest request) throws Exception {
 		//중복 체크
