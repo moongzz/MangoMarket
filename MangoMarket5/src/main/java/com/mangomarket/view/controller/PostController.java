@@ -98,7 +98,23 @@ public class PostController {
 	public String wishListShow(@RequestParam("userId") String userId, Model model) {
 		List<BoardVO> list = boardService.showWishList(Integer.parseInt(userId));
 		model.addAttribute("list", list);
-		
-		return "wishList";
+		model.addAttribute("title", "WISHLIST");
+		return "userHistory";
+	}
+	
+	@RequestMapping("/sellHistory")
+	public String sellHistory(@RequestParam("userId") int userId, Model model) {
+		List<BoardVO> list = boardService.sellHistory(userId);
+		model.addAttribute("list", list);
+		model.addAttribute("title", "판매내역");
+		return "userHistory";
+	}
+	
+	@RequestMapping("/buyHistory")
+	public String buyHistory(@RequestParam("userId") int userId, Model model) {
+		List<BoardVO> list = boardService.buyHistory(userId);
+		model.addAttribute("list", list);
+		model.addAttribute("title", "구매내역");
+		return "userHistory";
 	}
 }

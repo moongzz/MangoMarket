@@ -18,4 +18,8 @@ public interface BoardService {
 	void wishList(WishListVO vo);
 	
 	List<BoardVO> showWishList(int userId);
+	
+	List<BoardVO> sellHistory(int userId);
+	
+	List<BoardVO> buyHistory(int userId);
 }

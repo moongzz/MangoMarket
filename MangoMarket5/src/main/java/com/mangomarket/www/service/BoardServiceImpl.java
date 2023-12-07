@@ -57,4 +57,17 @@ public class BoardServiceImpl implements BoardService {
 		return list;
 	}
 
+	@Override
+	public List<BoardVO> sellHistory(int userId) {
+		List<BoardVO> list = dao.sellHistory(userId);
+		return list;
+	}
+	
+	@Override
+	public List<BoardVO> buyHistory(int userId) {
+		List<BoardVO> list = dao.buyHistory(userId);
+		return list;
+	}
+
+	
 }

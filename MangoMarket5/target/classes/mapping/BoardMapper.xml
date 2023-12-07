@@ -57,4 +57,17 @@
 	<select id="getUserWishList" resultType="wishList">
 		SELECT * FROM wishList WHERE userId = #{userId};
 	</select>
+	
+	<select id="getSellGoods" resultType="board">
+		SELECT * FROM sellHistory WHERE userId = #{userId};
+	</select>
+	
+	<insert id="insertSellHistory">
+		INSERT INTO sellHistory (userId, thumbnailPicLink, goodsId) 
+		values(#{sellerId}, #{imgUrl}, #{goodsId});
+	</insert>
+	
+	<select id="getBuyGoods" resultType="board">
+		SELECT * FROM buyHistory WHERE userId = #{userId};
+	</select>
 </mapper>

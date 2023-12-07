@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>위시리스트</title>
-<link rel="stylesheet" href="/resources/css/sellHistory.css?after">
+<link rel="stylesheet" href="/resources/css/userHistory.css?after">
 <script src="https://kit.fontawesome.com/064e428fcd.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
@@ -20,7 +20,7 @@
 		</p>
 	</header>
 	<section>
-		<h1>WISHLIST</h1>
+		<h1>${title }</h1>
 		<c:forEach var="dto" items="${list}">
 			<div id="imgBox" onclick="document.location.href='showGood?goodsId=${dto.goodsId}'">
 				<img src="/uploadImg/${dto.imgUrl }">
