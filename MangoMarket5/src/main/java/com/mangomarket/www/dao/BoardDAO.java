@@ -21,12 +21,10 @@ public class BoardDAO {
 	public void insertGood(BoardVO vo) {
 		mybatis.insert(NAMESPACE + ".insertGood", vo);
 		int goodsId = mybatis.selectOne(NAMESPACE + ".getGoodsId", vo);
-		System.out.println("BoardDAO insertGood goodsId: " + goodsId);
 		vo.setGoodsId(goodsId);
 		mybatis.insert(NAMESPACE + ".insertRegion", vo);
 		mybatis.insert(NAMESPACE + ".insertPictureGood", vo);
-		BoardVO vo2 = null;
-		vo2 = getPictureGoods(goodsId);
+		BoardVO vo2 = getPictureGoods(goodsId);
 		vo.setImgUrl(vo2.getImgUrl());
 		mybatis.insert(NAMESPACE + ".insertSellHistory", vo);
 	}
@@ -93,10 +91,9 @@ public class BoardDAO {
 	}
 	
 	public List<BoardVO> showWishList(int userId){
-		List<WishListVO> userWishList = new ArrayList<WishListVO>();
+		List<WishListVO> userWishList = mybatis.selectList(NAMESPACE + ".getUserWishList", userId);
 		List<BoardVO> wishListGoods = new ArrayList<BoardVO>();
 		
-		userWishList = mybatis.selectList(NAMESPACE + ".getUserWishList", userId);
 		for(WishListVO vo : userWishList) {
 			BoardVO bvo = getGood(vo.getGoodsId());
 			BoardVO imgbvo = getPictureGoods(bvo.getGoodsId());
@@ -110,35 +107,15 @@ public class BoardDAO {
 	}
 	
 	public List<BoardVO> sellHistory(int userId){
-		List<BoardVO> sellGoods = new ArrayList<BoardVO>();
-		List<BoardVO> userSellList = new ArrayList<BoardVO>();
-		
-		sellGoods = mybatis.selectList(NAMESPACE + ".getSellGoods", userId);
-		for(BoardVO vo : sellGoods) {
-			BoardVO bvo = getGood(vo.getGoodsId());
-			BoardVO imgbvo = getPictureGoods(bvo.getGoodsId());
-			bvo.setImgUrl(imgbvo.getImgUrl());
-			bvo.setCountWishList(countWishList(vo.getGoodsId()));
-			bvo.setCountChatRoom(countChatRoom(vo.getGoodsId()));
-			userSellList.add(bvo);
-		}
+		List<BoardVO> sellGoods = mybatis.selectList(NAMESPACE + ".getSellGoods", userId);
+		List<BoardVO> userSellList = getHistoryGoods(sellGoods);
 		
 		return userSellList;
 	}
 	
 	public List<BoardVO> buyHistory(int userId){
-		List<BoardVO> buyGoods = new ArrayList<BoardVO>();
-		List<BoardVO> userBuyList = new ArrayList<BoardVO>();
-		
-		buyGoods = mybatis.selectList(NAMESPACE + ".getBuyGoods", userId);
-		for(BoardVO vo : buyGoods) {
-			BoardVO bvo = getGood(vo.getGoodsId());
-			BoardVO imgbvo = getPictureGoods(bvo.getGoodsId());
-			bvo.setImgUrl(imgbvo.getImgUrl());
-			bvo.setCountWishList(countWishList(vo.getGoodsId()));
-			bvo.setCountChatRoom(countChatRoom(vo.getGoodsId()));
-			userBuyList.add(bvo);
-		}
+		List<BoardVO> buyGoods = mybatis.selectList(NAMESPACE + ".getBuyGoods", userId);
+		List<BoardVO> userBuyList = getHistoryGoods(buyGoods);
 		
 		return userBuyList;
 	}
@@ -148,6 +125,23 @@ public class BoardDAO {
 		mybatis.insert(NAMESPACE + ".insertBuyHistory", vo);
 	}
 	
+	
+//	------------------------------------------------------------------------------------------------------------------------------
+	
+	private List<BoardVO> getHistoryGoods(List<BoardVO> list){
+		List<BoardVO> goodsList = new ArrayList<BoardVO>();
+		
+		for(BoardVO vo : list) {
+			BoardVO bvo = getGood(vo.getGoodsId());
+			BoardVO imgbvo = getPictureGoods(bvo.getGoodsId());
+			bvo.setImgUrl(imgbvo.getImgUrl());
+			bvo.setCountWishList(countWishList(vo.getGoodsId()));
+			bvo.setCountChatRoom(countChatRoom(vo.getGoodsId()));
+			goodsList.add(bvo);
+		}
+		
+		return goodsList;
+	}
 	
 	private List<BoardVO> getGoods(int category){
 		return mybatis.selectList(NAMESPACE + ".selectGoods", category);
