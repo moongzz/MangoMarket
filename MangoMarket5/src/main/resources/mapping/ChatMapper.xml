@@ -13,7 +13,7 @@
 	</select>
 	
 	<select id="selectChat" resultType="chat">
-		SELECT c.*, u.userNick FROM chats c JOIN user u ON c.fromId = u.userId WHERE c.crId = #{crId};
+		SELECT c.*, u.userNick FROM chats c JOIN user u ON c.fromId = u.userId WHERE c.crId = #{crId} ORDER BY createdAt ASC
 	</select>
 	
 	<select id="selectChatRoomList" resultType="chatRoom">
@@ -24,4 +24,10 @@
 		INNER JOIN picturegoods pi ON g.goodsId = pi.goodsId
 		WHERE c.buyerId = #{userId} OR c.sellerId = #{userId};
 	</select>
+	
+	<insert id="insertMessage">
+		INSERT INTO chats (crId, content, fromId, toId) 
+		values(#{crId}, #{content}, #{fromId}, #{toId});
+	</insert>
+	
  </mapper>

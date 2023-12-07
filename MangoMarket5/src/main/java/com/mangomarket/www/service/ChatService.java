@@ -12,4 +12,8 @@ public interface ChatService {
 	List<ChatVO> showChat(int crId);
 
 	List<ChatRoomVO> showChatRoom(int userId);
+	
+	void sendMessage(ChatVO cvo);
+	
+	int getCrId(ChatRoomVO crvo);
 }

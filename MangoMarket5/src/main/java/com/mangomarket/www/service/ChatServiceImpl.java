@@ -32,4 +32,15 @@ public class ChatServiceImpl implements ChatService {
 		return chatRoomList;
 	}
 
+	@Override
+	public void sendMessage(ChatVO cvo) {
+		dao.sendMessage(cvo);
+	}
+
+	@Override
+	public int getCrId(ChatRoomVO crvo) {
+		return dao.getCrId(crvo);
+	}
+
+	
 }

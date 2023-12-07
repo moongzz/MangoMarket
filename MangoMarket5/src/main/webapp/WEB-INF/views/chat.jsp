@@ -43,23 +43,22 @@
 		    </c:choose>
 		</div>
 		<div id="showChatBox">
-		<c:forEach var="vo" items="${chatList}">
-			<c:choose>
-				<c:when test="${vo.fromId eq userInfo.userId}">
-			    	<div id="senderMessage"><p id="contentText">${vo.content}</p></div><br>
-			    </c:when>
-			    <c:otherwise>
-			    	<p>${vo.toNick }</p>
-			    	<div id="receiverMessage"><p id="contentText">${vo.content}</p><p id="createdAtText">${vo.createdAt }</p></div><br>
-			    </c:otherwise>
-		    </c:choose>
-		</c:forEach>
+			<c:forEach var="vo" items="${chatList}">
+				<c:choose>
+					<c:when test="${vo.fromId eq userInfo.userId}">
+				    	<div id="senderMessage"><p id="contentText">${vo.content}</p></div><br>
+				    </c:when>
+				    <c:otherwise>
+				    	<p>${vo.toNick }</p>
+				    	<div id="receiverMessage"><p id="contentText">${vo.content}</p><p id="createdAtText">${vo.createdAt }</p></div><br>
+				    </c:otherwise>
+			    </c:choose>
+			</c:forEach>
 		</div>
 		<div id="chatBox">
 			<form action="sendMessage" method="post" id="sendMessage">
 				<div id="textBox">
 					<input type="text" name="content" placeholder="메시지 보내기" required/>
-					<input type="hidden" name="crId" value="${crvo.crId}">
 					<input type="hidden" name="fromId" value="${userInfo.userId }">
 					<input type="hidden" name="buyer" value="${crvo.buyerId}">
 					<input type="hidden" name="seller" value="${crvo.sellerId}">
@@ -70,4 +69,11 @@
 		</div>
 	</section>
 </body>
+<script type="text/javascript">
+	window.onload=function(){
+		let mySpace = document.getElementById("showChatBox");
+		mySpace.scrollTop = mySpace.scrollHeight;
+	};
+
+</script>
 </html>

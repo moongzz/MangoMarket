@@ -31,4 +31,13 @@ public class ChatDAO {
 		List<ChatRoomVO> chatRoomList = mybatis.selectList(NAMESPACE + ".selectChatRoomList", userId);
 		return chatRoomList;
 	}
+	
+	public void sendMessage(ChatVO cvo) {
+		mybatis.insert(NAMESPACE + ".insertMessage", cvo);
+	}
+	
+	public int getCrId(ChatRoomVO crvo) {
+		ChatRoomVO vo = mybatis.selectOne(NAMESPACE + ".selectChatRoom", crvo);
+		return vo.getCrId();
+	}
 }
