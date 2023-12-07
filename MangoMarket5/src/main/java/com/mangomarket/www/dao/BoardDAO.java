@@ -143,6 +143,11 @@ public class BoardDAO {
 		return userBuyList;
 	}
 	
+	public void completeSale(BoardVO vo) {
+		mybatis.update(NAMESPACE + ".completeSale", vo);
+		mybatis.insert(NAMESPACE + ".insertBuyHistory", vo);
+	}
+	
 	
 	private List<BoardVO> getGoods(int category){
 		return mybatis.selectList(NAMESPACE + ".selectGoods", category);

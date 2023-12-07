@@ -37,8 +37,17 @@ public class BoardVO {
 	private String realPath;
 	
 	private int countWishList;
+	public int getBuyerId() {
+		return buyerId;
+	}
+	public void setBuyerId(int buyerId) {
+		this.buyerId = buyerId;
+	}
+
 	private int countChatRoom;
 	
+	//buyHistory 테이블
+	private int buyerId;
 	
 	public Object getData() {
 		return data;

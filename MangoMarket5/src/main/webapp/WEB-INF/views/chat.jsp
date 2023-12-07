@@ -27,12 +27,12 @@
 				<c:when test="${bvo.sellerId eq userInfo.userId}">
 					<c:choose>
 						<c:when test="${bvo.status eq 'O'}">
-							<form>
-								<input type="hidden" id="buyerId" value="${crvo.buyerId }">
-								<input type="hidden" id="goodsId" value="${bvo.goodsId }">
-								<input type="hidden" id="thumbnailPicLink" value="${bvo.imgUrl }">
+							<form method="post" action="completeSale">
+								<input type="hidden" name="buyerId" value="${crvo.buyerId }">
+								<input type="hidden" name="goodsId" value="${bvo.goodsId }">
+								<input type="hidden" name="thumbnailPicLink" value="${bvo.imgUrl }">
 								
-								<input id="sellBtn" type="button" value="유저에게 판매하겠습니다.">
+								<input id="sellBtn" type="submit" value="유저에게 판매하겠습니다.">
 							</form>
 						</c:when>
 						<c:otherwise>

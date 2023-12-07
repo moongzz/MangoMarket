@@ -22,4 +22,6 @@ public interface BoardService {
 	List<BoardVO> sellHistory(int userId);
 	
 	List<BoardVO> buyHistory(int userId);
+	
+	void completeSale(BoardVO vo);
 }

@@ -70,4 +70,13 @@
 	<select id="getBuyGoods" resultType="board">
 		SELECT * FROM buyHistory WHERE userId = #{userId};
 	</select>
+	
+	<update id="completeSale">
+		UPDATE goods SET status = 'X' WHERE goodsId = #{goodsId};
+	</update>
+	
+	<insert id="insertBuyHistory">
+		INSERT INTO buyHistory (userId, thumbnailPicLink, goodsId) 
+		values(#{buyerId}, #{imgUrl}, #{goodsId});
+	</insert>
 </mapper>

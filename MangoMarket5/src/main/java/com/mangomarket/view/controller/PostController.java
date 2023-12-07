@@ -117,4 +117,16 @@ public class PostController {
 		model.addAttribute("title", "구매내역");
 		return "userHistory";
 	}
+	
+	@RequestMapping("/completeSale")
+	public String completeSale(@RequestParam("buyerId") int buyerId, @RequestParam("goodsId") int goodsId, @RequestParam("thumbnailPicLink") String thumbnailPicLinkd) {
+		BoardVO vo = new BoardVO();
+		vo.setBuyerId(buyerId);
+		vo.setGoodsId(goodsId);
+		vo.setImgUrl(thumbnailPicLinkd);
+		
+		boardService.completeSale(vo);
+		
+		return "home";
+	}
 }

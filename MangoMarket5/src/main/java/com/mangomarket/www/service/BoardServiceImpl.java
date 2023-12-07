@@ -69,5 +69,10 @@ public class BoardServiceImpl implements BoardService {
 		return list;
 	}
 
+	@Override
+	public void completeSale(BoardVO vo) {
+		dao.completeSale(vo);
+	}
+
 	
 }
