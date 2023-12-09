@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mangomarket.www.constants.Path;
+import com.mangomarket.www.constants.PrintText;
 import com.mangomarket.www.service.BoardService;
 import com.mangomarket.www.service.MemberService;
 import com.mangomarket.www.service.ValidaroService;
@@ -61,11 +63,11 @@ public class PostController {
 			vo.setRegionName(regionName);
 			
 			boardService.insertGood(vo);
-			path = "home";
+			path = Path.HOME.getPath();
 		} else {
 			request.setAttribute("errMSG", errorMsg);
-			request.setAttribute("url", "writePost");
-			path = "error";
+			request.setAttribute("url", Path.WRITE_POST_PAGE.getPath());
+			path = Path.ERROR_PAGE.getPath();
 		}
 		
 		return path;
@@ -81,7 +83,7 @@ public class PostController {
 		mvo = memberService.selectUser(bvo.getSellerId());
 		model.addAttribute("mvo", mvo);
 		
-		return "good";
+		return Path.GOOD_PAGE.getPath();
 	}
 	
 	@RequestMapping("/wishList")
@@ -91,31 +93,31 @@ public class PostController {
 		vo.setUserId(Integer.parseInt(userId));
 		
 		boardService.wishList(vo);
-		return "home";
+		return Path.HOME.getPath();
 	}
 	
 	@RequestMapping("/wishListShow")
 	public String wishListShow(@RequestParam("userId") String userId, Model model) {
 		List<BoardVO> list = boardService.showWishList(Integer.parseInt(userId));
 		model.addAttribute("list", list);
-		model.addAttribute("title", "WISHLIST");
-		return "userHistory";
+		model.addAttribute("title", PrintText.WISHLIST.getText());
+		return Path.USER_HISTORY_PAGE.getPath();
 	}
 	
 	@RequestMapping("/sellHistory")
 	public String sellHistory(@RequestParam("userId") int userId, Model model) {
 		List<BoardVO> list = boardService.sellHistory(userId);
 		model.addAttribute("list", list);
-		model.addAttribute("title", "판매내역");
-		return "userHistory";
+		model.addAttribute("title", PrintText.SELL_HISTORY.getText());
+		return Path.USER_HISTORY_PAGE.getPath();
 	}
 	
 	@RequestMapping("/buyHistory")
 	public String buyHistory(@RequestParam("userId") int userId, Model model) {
 		List<BoardVO> list = boardService.buyHistory(userId);
 		model.addAttribute("list", list);
-		model.addAttribute("title", "구매내역");
-		return "userHistory";
+		model.addAttribute("title", PrintText.BUY_HISTORY.getText());
+		return Path.USER_HISTORY_PAGE.getPath();
 	}
 	
 	@RequestMapping("/completeSale")
@@ -127,6 +129,6 @@ public class PostController {
 		
 		boardService.completeSale(vo);
 		
-		return "home";
+		return Path.HOME.getPath();
 	}
 }

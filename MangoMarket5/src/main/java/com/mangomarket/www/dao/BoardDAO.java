@@ -45,7 +45,6 @@ public class BoardDAO {
 			
 			list2.add(vo);
 		}
-		System.out.println("BoardDAO list2 = " + list2);
 		return list2;
 	}
 	

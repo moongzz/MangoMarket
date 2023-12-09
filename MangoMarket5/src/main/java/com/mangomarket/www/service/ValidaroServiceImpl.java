@@ -4,6 +4,8 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import static com.mangomarket.www.constants.ErrorText.*;
+import static com.mangomarket.www.constants.ErrorValue.*;
 import com.mangomarket.www.dao.ValidaroDAO;
 import com.mangomarket.www.vo.BoardVO;
 import com.mangomarket.www.vo.MemberVO;
@@ -16,7 +18,7 @@ public class ValidaroServiceImpl implements ValidaroService {
 	
 	@Override
 	public String validateSignUp(MemberVO vo) {
-		String errorMsg = "";
+		String errorMsg = BLANK.getPrint();
 		errorMsg += validateUserID(vo.getId());
 		errorMsg += validateUserPwd(vo.getPwd());
 		errorMsg += validateUserNick(vo.getUserNick());
@@ -28,7 +30,7 @@ public class ValidaroServiceImpl implements ValidaroService {
 	
 	@Override
 	public String validateUploadGood(BoardVO vo) {
-		String errorMsg = "";
+		String errorMsg = BLANK.getPrint();
 		errorMsg += validateTitleLength(vo.getTitle());
 		errorMsg += validateCategory(vo.getCategory(), vo.getCategory2());
 		return errorMsg;
@@ -36,20 +38,20 @@ public class ValidaroServiceImpl implements ValidaroService {
 	
 	//회원가입 유효성 체크
 	private String validateUserID(String id) {
-		if(isUserIDUnique(id)) return "이미 등록된 아이디입니다.";
-		else if(isStringLength(id)) return "아이디는 4자 이상 20자 이하까지 가능합니다.";
-		else if(!isAlphanumeric(id)) return "아이디는 영어와 숫자만 입력 가능합니다.";
-		return "";
+		if(isUserIDUnique(id)) return ID_DUPLICATE.getPrint();
+		else if(isStringLength(id)) return ID_LENGTH.getPrint();
+		else if(!isAlphanumeric(id)) return ID_CHARACTERS.getPrint();
+		return BLANK.getPrint();
 	}
 	
 	private boolean isUserIDUnique(String id) {
 		int result = dao.isUserIDUnique(id);
-		if(result != 0) return true;
+		if(result != ZERO.getValue()) return true;
 		return false;
 	}
 	
 	private boolean isStringLength(String id) {
-		if(id.length() > 20 && id.length() < 4) return true;
+		if(id.length() > ID_MAX_LENGTH.getValue() && id.length() < ID_MIN_LENGTH.getValue()) return true;
 		return false;
 	}
 
@@ -58,30 +60,30 @@ public class ValidaroServiceImpl implements ValidaroService {
 	}
 	
 	private String validateUserPwd(String pwd) {
-		if(isPasswordMinLength(pwd)) return "비밀번호는 최소 8자 이상 20자 이하까지 가능합니다.";
-		return "";
+		if(isPasswordMinLength(pwd)) return PW_LENGTH.getPrint();
+		return BLANK.getPrint();
 	}
 
 	private boolean isPasswordMinLength(String pwd) {
-		if(pwd.length() < 8 && pwd.length() > 20) return true;
+		if(pwd.length() < PW_MIN_LENGTH.getValue() && pwd.length() > PW_MAX_LENGTH.getValue()) return true;
 		return false;
 	}
 	
 	private String validateUserNick(String nick) {
-		if(isNickDuplicate(nick)) return "중복된 닉네임입니다.";
-		else if(isNickMaxLength(nick)) return "닉네임은 최대 20자까지 가능합니다.";
-		else if(isContainsSpace(nick)) return "공백은 입력할 수 없습니다.";
-		return "";
+		if(isNickDuplicate(nick)) return NICK_DUPLICATE.getPrint();
+		else if(isNickMaxLength(nick)) return NICK_LENGTH.getPrint();
+		else if(isContainsSpace(nick)) return SPACES.getPrint();
+		return BLANK.getPrint();
 	}
 	
 	private boolean isNickDuplicate(String nick) {
 		int result = dao.isNickDuplicate(nick);
-		if(result != 0) return true;
+		if(result != ZERO.getValue()) return true;
 		return false;
 	}
 	
 	private boolean isNickMaxLength(String nick) {
-		if(nick.length() > 20) return true;
+		if(nick.length() > NICK_MAX_LENGTH.getValue()) return true;
 		return false;
 	}
 	
@@ -91,25 +93,25 @@ public class ValidaroServiceImpl implements ValidaroService {
 	}
 	
 	private String validateUserEmail(String email) {
-		if(isEmailDuplicate(email)) return "이미 등록된 이메일입니다.";
-		return "";
+		if(isEmailDuplicate(email)) return EMAIL_DUPLICATE.getPrint();
+		return BLANK.getPrint();
 	}
 	
 	private boolean isEmailDuplicate(String email) {
 		int result = dao.isEmailDuplicate(email);
-		if(result != 0) return true;
+		if(result != ZERO.getValue()) return true;
 		return false;
 	}
 	
 	private String validateUserPhone(String phone) {
-		if(isPhoneDuplicate(phone)) return "이미 등록된 전화번호입니다.";
-		else if(!isPhoneFormat(phone)) return "전화번호를 다시 확인해주세요.";
-		return "";
+		if(isPhoneDuplicate(phone)) return PHONE_DUPLICATE.getPrint();
+		else if(!isPhoneFormat(phone)) return PHONE_FORMAT.getPrint();
+		return BLANK.getPrint();
 	}
 	
 	private boolean isPhoneDuplicate(String phone) {
 		int result = dao.isPhoneDuplicate(phone);
-		if(result != 0) return true;
+		if(result != ZERO.getValue()) return true;
 		return false;
 	}
 	
@@ -121,14 +123,14 @@ public class ValidaroServiceImpl implements ValidaroService {
 	
 	//상품 업로드 유효성 체크
 	private String validateTitleLength(String title) {
-		if(title.length() > 20) return "제목은 20자 이하까지 입력 가능합니다.";
-		return "";
+		if(title.length() > TITLE_MAX_LENGTH.getValue()) return TITLE_LENGTH.getPrint();
+		return BLANK.getPrint();
 	}
 
 	private String validateCategory(String category1, String category2) {
 		if((!category1.equals("8") && !category1.equals("9")) && category2 == null ) {
-			return "세부 카테코리를 선택해주세요.";
+			return CATEGORY_NOT_SELECTED.getPrint();
 		}
-		return "";
+		return BLANK.getPrint();
 	}
 }

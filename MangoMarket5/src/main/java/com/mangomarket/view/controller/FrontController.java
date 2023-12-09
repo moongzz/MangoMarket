@@ -5,32 +5,34 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import static com.mangomarket.www.constants.Path.*;
+
 @Controller
 public class FrontController {
 	
 	@RequestMapping("/home")
 	public String home(Model model) {
-		return "home";
+		return HOME.getPath();
 	}
 	
 	@RequestMapping("/memberRegister")
 	public String memberRegister(Model model) {
-		return "memberRegister";
+		return MEMBER_REGISTER_PATH.getPath();
 	}
 	
 	@RequestMapping("/myPage")
 	public String myPage(Model model) {
-		return "myPage";
+		return MY_PAGE.getPath();
 	}
 	
 	@RequestMapping("/writePost")
 	public String writePost(Model model) {
-		return "writePost";
+		return WRITE_POST_PAGE.getPath();
 	}
 	
 	@RequestMapping("/goodList")
 	public String goodList(@RequestParam("menu") int menuNum, Model model) {
 		model.addAttribute("menu", menuNum);
-		return "goodList";
+		return GOOD_LIST_PAGE.getPath();
 	}
 }

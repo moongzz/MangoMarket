@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mangomarket.www.constants.ErrorText;
+import com.mangomarket.www.constants.Path;
 import com.mangomarket.www.service.MemberService;
 import com.mangomarket.www.vo.MemberVO;
 
@@ -41,12 +43,12 @@ public class MemberController {
 		int result = memberService.login(vo);
 		
 		if(result == 1) {
-			path = "home";
+			path = Path.HOME.getPath();
 			memberService.loginCheck(vo, seesion);
 		} else if(result != 1){
-			request.setAttribute("errMSG", "유효하지 않은 아이디와 비밀번호 입니다.");
-			request.setAttribute("url", "home");
-			path = "error";
+			request.setAttribute("errMSG", ErrorText.LOGIN_ERROR.getPrint());
+			request.setAttribute("url", Path.HOME.getPath());
+			path = Path.ERROR_PAGE.getPath();
 		}
 		
 		return path; 
@@ -55,7 +57,7 @@ public class MemberController {
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		memberService.logout(session);
-		return "home";
+		return Path.HOME.getPath();
 	}
 	
 	@RequestMapping("/memberRegisterOK")
@@ -66,11 +68,11 @@ public class MemberController {
 		
 		if(errorMsg.equals("")) {
 			memberService.insert(vo);
-			path = "home";
+			path = Path.HOME.getPath();
 		} else {
 			request.setAttribute("errMSG", errorMsg);
 			request.setAttribute("url", "memberRegister");
-			path = "error";
+			path = Path.ERROR_PAGE.getPath();
 		}
 		
 		return path;
@@ -88,17 +90,16 @@ public class MemberController {
 			file.transferTo(new File(fullPath));
 		}
 		MemberVO vo = new MemberVO();
-		System.out.println("이미지 이름 : " + file.getOriginalFilename());
 		vo.setImgUrl(file.getOriginalFilename());
 		vo.setUserId(userId);
 		memberService.insertUserImg(vo, request, seesion);
-		return "home";
+		return Path.HOME.getPath();
 	}
 	
 	@RequestMapping("/userModify")
 	public String userModify(MemberVO vo, int userId, HttpSession session, HttpServletRequest request) {
 		MemberVO vo2 = memberService.userModify(vo, userId);
 		request.getSession().setAttribute("userInfo", vo2);
-		return "home";
+		return Path.HOME.getPath();
 	}
 }

@@ -29,8 +29,6 @@ public class MemberDAO {
 	}
 	
 	public void insert(MemberVO vo) {
-		System.out.println("MemberVO [id=" + vo.getId() + ", imgUrl=" + vo.getImgUrl() + ", userNick=" + vo.getUserNick() + ", userName=" + vo.getUserName()
-				+ ", email=" + vo.getEmail() + ", phone=" + vo.getPhone() + ", pwd=" + vo.getPwd() + ", userId=" + vo.getUserId() + "]");
 		sqlSession.insert(NAMESPACE + ".insertMember", vo);
 	}
 	

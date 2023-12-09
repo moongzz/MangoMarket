@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.mangomarket.www.constants.ErrorText;
+import com.mangomarket.www.constants.Path;
 import com.mangomarket.www.service.BoardService;
 import com.mangomarket.www.service.ChatService;
 import com.mangomarket.www.vo.BoardVO;
@@ -42,9 +44,9 @@ public class ChatController {
 		crvo.setSellerStatus("O");
 		
 		if(buyerId == sellerId) {
-			request.setAttribute("errMSG", "본인 게시글에는 메시지를 보낼 수 없습니다.");
-			request.setAttribute("url", "home");
-			path = "error";
+			request.setAttribute("errMSG", ErrorText.MESSAGE_TO_OWN_POST.getPrint());
+			request.setAttribute("url", Path.HOME.getPath());
+			path = Path.ERROR_PAGE.getPath();
 		} else {
 			crvo.setGoodsId(goodsId);
 			//chatRoom 테이블에 crvo 값 넣기
@@ -57,7 +59,7 @@ public class ChatController {
 			List<ChatVO> chatList = chatService.showChat(crId);
 			request.setAttribute("chatList", chatList);
 			
-			path = "chat";
+			path = Path.CHAT_PAGE.getPath();
 		}
 		
 		return path;
@@ -67,7 +69,7 @@ public class ChatController {
 	public String chatRooms(@RequestParam("userId") int userId, Model model) {
 		List<ChatRoomVO> chatRoomList = chatService.showChatRoom(userId);
 		model.addAttribute("chatRoomList", chatRoomList);
-		return "chatRoom";
+		return Path.CHAT_ROOM_PAGE.getPath();
 	}
 	
 	@RequestMapping("/sendMessage")
@@ -103,6 +105,6 @@ public class ChatController {
 		List<ChatVO> chatList = chatService.showChat(crId);
 		model.addAttribute("chatList", chatList);
 		model.addAttribute("crvo", crvo);
-		return "chat";
+		return Path.CHAT_PAGE.getPath();
 	}
 }
