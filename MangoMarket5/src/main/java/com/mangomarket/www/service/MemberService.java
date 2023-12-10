@@ -20,4 +20,6 @@ public interface MemberService {
 	public MemberVO userModify(MemberVO vo, int userId);
 
 	public MemberVO selectUser(int userId);
+	
+	public MemberVO findId(String phone);
 }

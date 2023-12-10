@@ -102,4 +102,15 @@ public class MemberController {
 		request.getSession().setAttribute("userInfo", vo2);
 		return Path.HOME.getPath();
 	}
+	
+	@RequestMapping("/findIdOK")
+	public String findIdOK(@RequestParam("phone") String phone, HttpServletRequest request) {
+		MemberVO vo = memberService.findId(phone);
+		if(vo == null) {
+			request.setAttribute("findID", "nothing");
+		} else {
+			request.setAttribute("findID", vo.getId());
+		}
+		return "findID";
+	}
 }

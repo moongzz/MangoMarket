@@ -10,7 +10,9 @@ public enum Path {
 	WRITE_POST_PAGE("writePost"),
 	GOOD_LIST_PAGE("goodList"),
 	GOOD_PAGE("good"),
-	USER_HISTORY_PAGE("userHistory");
+	USER_HISTORY_PAGE("userHistory"),
+	FIND_ID_PAGE("findID"),
+	FIND_PASSWORD_PAGE("findPassword");
 	
 	private final String path;
 	

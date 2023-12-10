@@ -55,4 +55,9 @@ public class MemberServiceImpl implements MemberService {
 		session.invalidate();
 	}
 
+	@Override
+	public MemberVO findId(String phone) {
+		return dao.findId(phone);
+	}
+
 }

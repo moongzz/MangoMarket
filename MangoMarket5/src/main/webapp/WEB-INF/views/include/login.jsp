@@ -23,7 +23,7 @@
 					<div id="pwBox2"><i class="fa-solid fa-unlock-keyhole"></i><input type="password" name="pwd" placeholder="비밀번호"></div>
 					<input type="submit" value="로그인">
 				</form>
-				<a href="memberRegister">회원가입</a><a href="">아이디 찾기</a><a href="">비밀번호 찾기</a>
+				<a href="memberRegister">회원가입</a><a href="findID">아이디 찾기</a><a href="findPassword">비밀번호 찾기</a>
 			</div>
 			</c:when>
 		</c:choose>

@@ -35,4 +35,15 @@ public class FrontController {
 		model.addAttribute("menu", menuNum);
 		return GOOD_LIST_PAGE.getPath();
 	}
+	
+	@RequestMapping("/findID")
+	public String findID() {
+		return FIND_ID_PAGE.getPath();
+
+	}
+	
+	@RequestMapping("/findPassword")
+	public String findPassword() {
+		return FIND_PASSWORD_PAGE.getPath();
+	}
 }

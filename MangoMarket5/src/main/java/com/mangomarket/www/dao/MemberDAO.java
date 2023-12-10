@@ -49,4 +49,7 @@ public class MemberDAO {
 		return vo;
 	}
 	
+	public MemberVO findId(String phone) {
+		return mybatis.selectOne(NAMESPACE + ".findId", phone);
+	}
 }

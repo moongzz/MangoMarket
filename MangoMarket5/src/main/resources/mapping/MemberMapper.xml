@@ -28,4 +28,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-ma
 	<select id="selectUser" resultType="member">
 		SELECT * FROM user WHERE userId = #{userId};
 	</select>
+	
+	<select id="findId" resultType="member">
+		SELECT * FROM user WHERE phone = #{phone}; 
+	</select>
 </mapper>
