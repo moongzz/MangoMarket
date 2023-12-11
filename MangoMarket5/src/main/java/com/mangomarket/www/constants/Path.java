@@ -2,7 +2,7 @@ package com.mangomarket.www.constants;
 
 public enum Path {
 	HOME("home"),
-	ERROR_PAGE("eroor"),
+	ERROR_PAGE("error"),
 	CHAT_PAGE("chat"),
 	CHAT_ROOM_PAGE("chatRoom"),
 	MEMBER_REGISTER_PATH("memberRegister"),

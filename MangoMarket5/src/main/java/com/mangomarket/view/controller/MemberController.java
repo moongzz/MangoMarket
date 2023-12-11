@@ -26,7 +26,7 @@ public class MemberController {
 	private MemberService memberService;
 
 	@Autowired
-	private ValidaroService ValidaroService;
+	private ValidaroService validaroService;
 	
 	@RequestMapping("/login")
 	public String login(@RequestParam("id") String id
@@ -63,7 +63,7 @@ public class MemberController {
 	@RequestMapping("/memberRegisterOK")
 	public String memberRegisterOK(MemberVO vo,HttpServletRequest request) throws Exception {
 		//중복 체크
-		String errorMsg = ValidaroService.validateSignUp(vo);
+		String errorMsg = validaroService.validateSignUp(vo);
 		String path = "";
 		
 		if(errorMsg.equals("")) {
@@ -71,7 +71,7 @@ public class MemberController {
 			path = Path.HOME.getPath();
 		} else {
 			request.setAttribute("errMSG", errorMsg);
-			request.setAttribute("url", "memberRegister");
+			request.setAttribute("url", Path.MEMBER_REGISTER_PATH.getPath());
 			path = Path.ERROR_PAGE.getPath();
 		}
 		
@@ -106,11 +106,43 @@ public class MemberController {
 	@RequestMapping("/findIdOK")
 	public String findIdOK(@RequestParam("phone") String phone, HttpServletRequest request) {
 		MemberVO vo = memberService.findId(phone);
-		if(vo == null) {
-			request.setAttribute("findID", "nothing");
+		
+		if(vo == null) request.setAttribute("findID",  ErrorText.NOTHING.getPrint());
+		else request.setAttribute("findID", vo.getId());
+		
+		return Path.FIND_ID_PAGE.getPath();
+	}
+	
+	@RequestMapping("/findPWOK")
+	public String findPWOK(@RequestParam("id") String id, @RequestParam("email") String email, HttpServletRequest request) {
+		MemberVO vo = new MemberVO();
+		vo.setEmail(email);
+		vo.setId(id);
+		MemberVO userVO = memberService.findPW(vo);
+		
+		if(userVO == null) request.setAttribute("findPW", ErrorText.NOTHING.getPrint());
+		else request.setAttribute("findPW", userVO);
+		
+		return Path.FIND_PASSWORD_PAGE.getPath();
+	}
+	
+	@RequestMapping("/resetPW")
+	public String resetPW(@RequestParam("pwd") String pwd, @RequestParam("id") String id, @RequestParam("email") String email,HttpServletRequest request) {
+		String errorMsg = validaroService.validatePwd(pwd);
+		String path = "";
+		if(errorMsg.equals("")) {
+			MemberVO vo = new MemberVO();
+			vo.setEmail(email);
+			vo.setId(id);
+			vo.setPwd(pwd);
+			memberService.resetPW(vo);
+			path = Path.HOME.getPath();
 		} else {
-			request.setAttribute("findID", vo.getId());
+			request.setAttribute("errMSG", errorMsg);
+			request.setAttribute("url", Path.FIND_PASSWORD_PAGE.getPath());
+			path = Path.ERROR_PAGE.getPath();
 		}
-		return "findID";
+		
+		return path;
 	}
 }

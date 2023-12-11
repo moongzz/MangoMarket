@@ -37,24 +37,35 @@ section {
     height: 80vh;
 }
 
-div#phoneNumBox {
+#title{
+	margin-bottom: 10vh;
+}
+
+form div {
     width: 20vw;
     height: 40px;
     margin-left: 20vw;
     display: block;
-    margin-top: 10vh;
+    margin-top: 1vh;
     border: 2px solid #FFD067;
     border-radius: 20px;
+    position: relative;
 }
 
-input#phoneNum {
+form div input {
     width: 80%;
-    height: 85%;
+    height: 95%;
     border: none;
+    position: absolute;
 }
 
 i.fa-solid.fa-phone {
     padding: 4%;
+    color: #FFD067;
+}
+
+form div span {
+    padding: 3%;
     color: #FFD067;
 }
 
@@ -75,7 +86,7 @@ input[type="submit"]:hover{
 	color: #FFD067;
 }
 
-#findPW {
+.btn {
     right: 0;
     position: absolute;
     bottom: 10vh;
@@ -92,7 +103,7 @@ a:hover{
 	color: #3f6b52;
 }
 
-h1#findID {
+.find {
     text-align: center;
     margin-top: 10%;
 }

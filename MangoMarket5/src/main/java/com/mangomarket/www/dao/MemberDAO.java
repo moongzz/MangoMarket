@@ -52,4 +52,12 @@ public class MemberDAO {
 	public MemberVO findId(String phone) {
 		return mybatis.selectOne(NAMESPACE + ".findId", phone);
 	}
+	
+	public MemberVO findPW(MemberVO vo) {
+		return mybatis.selectOne(NAMESPACE + ".findPW", vo);
+	}
+	
+	public void resetPW(MemberVO vo) {
+		mybatis.update(NAMESPACE + ".resetPW", vo);
+	}
 }

@@ -13,7 +13,9 @@ public enum ErrorText {
 	PHONE_FORMAT("전화번호를 다시 확인해주세요."),
 	TITLE_LENGTH("제목은 20자 이하까지 입력 가능합니다."),
 	CATEGORY_NOT_SELECTED("세부 카테코리를 선택해주세요."),
+	
 	BLANK(""),
+	NOTHING("nothing"),
 	
 	MESSAGE_TO_OWN_POST("본인 게시글에는 메시지를 보낼 수 없습니다."),
 	LOGIN_ERROR("유효하지 않은 아이디와 비밀번호 입니다.");

@@ -8,4 +8,6 @@ public interface ValidaroService {
 	public String validateSignUp(MemberVO vo);
 
 	public String validateUploadGood(BoardVO vo);
+	
+	public String validatePwd(String pwd);
 }

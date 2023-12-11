@@ -36,6 +36,14 @@ public class ValidaroServiceImpl implements ValidaroService {
 		return errorMsg;
 	}
 	
+
+	@Override
+	public String validatePwd(String pwd) {
+		String errorMsg = BLANK.getPrint();
+		errorMsg += validateUserPwd(pwd);
+		return errorMsg;
+	}
+	
 	//회원가입 유효성 체크
 	private String validateUserID(String id) {
 		if(isUserIDUnique(id)) return ID_DUPLICATE.getPrint();
@@ -65,7 +73,7 @@ public class ValidaroServiceImpl implements ValidaroService {
 	}
 
 	private boolean isPasswordMinLength(String pwd) {
-		if(pwd.length() < PW_MIN_LENGTH.getValue() && pwd.length() > PW_MAX_LENGTH.getValue()) return true;
+		if(pwd.length() < PW_MIN_LENGTH.getValue() || pwd.length() > PW_MAX_LENGTH.getValue()) return true;
 		return false;
 	}
 	
@@ -133,4 +141,5 @@ public class ValidaroServiceImpl implements ValidaroService {
 		}
 		return BLANK.getPrint();
 	}
+
 }

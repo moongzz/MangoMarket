@@ -22,4 +22,8 @@ public interface MemberService {
 	public MemberVO selectUser(int userId);
 	
 	public MemberVO findId(String phone);
+	
+	public MemberVO findPW(MemberVO vo);
+	
+	public void resetPW(MemberVO vo);
 }

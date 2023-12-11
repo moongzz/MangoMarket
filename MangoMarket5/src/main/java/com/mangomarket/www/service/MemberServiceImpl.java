@@ -60,4 +60,15 @@ public class MemberServiceImpl implements MemberService {
 		return dao.findId(phone);
 	}
 
+	@Override
+	public MemberVO findPW(MemberVO vo) {
+		return dao.findPW(vo);
+	}
+
+	@Override
+	public void resetPW(MemberVO vo) {
+		dao.resetPW(vo);
+		
+	}
+
 }

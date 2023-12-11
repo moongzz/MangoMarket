@@ -46,4 +46,5 @@ public class FrontController {
 	public String findPassword() {
 		return FIND_PASSWORD_PAGE.getPath();
 	}
+	
 }
