@@ -79,4 +79,13 @@
 		INSERT INTO buyHistory (userId, thumbnailPicLink, goodsId) 
 		values(#{buyerId}, #{imgUrl}, #{goodsId});
 	</insert>
+	
+	<select id="searchGoods" resultType="board">
+		SELECT goods.*
+	    FROM goods
+	    INNER JOIN regionList ON goods.goodsId = regionList.goodsId
+	    WHERE (goods.title LIKE CONCAT('%', #{searchValue}, '%') OR goods.content LIKE CONCAT('%', #{searchValue}, '%'))
+	    OR regionList.regionName LIKE CONCAT('%', #{searchValue}, '%')
+	</select>
+	
 </mapper>

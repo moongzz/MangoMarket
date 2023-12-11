@@ -24,4 +24,6 @@ public interface BoardService {
 	List<BoardVO> buyHistory(int userId);
 	
 	void completeSale(BoardVO vo);
+	
+	List<BoardVO> searchGoods(String searchValue);
 }

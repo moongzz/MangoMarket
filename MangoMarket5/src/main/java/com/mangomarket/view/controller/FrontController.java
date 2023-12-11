@@ -47,4 +47,10 @@ public class FrontController {
 		return FIND_PASSWORD_PAGE.getPath();
 	}
 	
+	@RequestMapping("/searchGoodList")
+	public String searchGoodsList(@RequestParam("search") String search, Model model) {
+		model.addAttribute("searchValue", search);
+		return "searchGoodList";
+	}
+	
 }

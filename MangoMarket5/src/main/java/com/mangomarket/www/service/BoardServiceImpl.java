@@ -74,5 +74,10 @@ public class BoardServiceImpl implements BoardService {
 		dao.completeSale(vo);
 	}
 
+	@Override
+	public List<BoardVO> searchGoods(String searchValue) {
+		return dao.searchGoods(searchValue);
+	}
+
 	
 }

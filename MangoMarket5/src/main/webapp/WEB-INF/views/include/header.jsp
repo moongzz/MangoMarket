@@ -11,7 +11,7 @@
 		<span class="header_Text2">market</span>
 		<span><img src="/resources/images/망고.png"></span>
 	</p>
-	<form>
+	<form action="searchGoodList" method="post">
 		<input id="searchBox" type="text" name="search" placeholder="물품이나 동네를 검색해보세요">
 		<input id="searchbtn" type="submit" value="채팅하기">
 	</form>

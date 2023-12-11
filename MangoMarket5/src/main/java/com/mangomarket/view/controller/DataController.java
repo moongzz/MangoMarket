@@ -22,7 +22,7 @@ public class DataController {
 	private BoardService boardService;
 	
 	@RequestMapping(value = "/goodListOK", method = {RequestMethod.GET, RequestMethod.POST})
-	public Map<String, BoardVO> goodListOK(@RequestParam("menu") int menuNum, HttpServletRequest request){
+	public Map<String, BoardVO> goodListOK(@RequestParam("menu") int menuNum){
 		String realPath = "/uploadImg/";
 		
 		Map<String, BoardVO> map = new HashMap<String, BoardVO>();
@@ -44,6 +44,18 @@ public class DataController {
 			map.put(i + "", list.get(i));
 		}
 		
+		return map;
+	}
+	
+	@RequestMapping(value = "/searchGoodsOK", method = {RequestMethod.GET, RequestMethod.POST})
+	public Map<String, BoardVO> searchGoods(@RequestParam("search") String searchValue){
+		Map<String, BoardVO> map = new HashMap<String, BoardVO>();
+		List<BoardVO> list = boardService.searchGoods(searchValue);
+		System.out.println("list = " + list);
+		for(int i = 0; i < list.size(); i++) {
+			map.put(i + "", list.get(i));
+		}
+		System.out.println(map);
 		return map;
 	}
 }

@@ -124,6 +124,23 @@ public class BoardDAO {
 		mybatis.insert(NAMESPACE + ".insertBuyHistory", vo);
 	}
 	
+	public List<BoardVO> searchGoods(String searchValue){
+		List<BoardVO> list = mybatis.selectList(NAMESPACE + ".searchGoods", searchValue);
+		List<BoardVO> list2 = new ArrayList<BoardVO>();
+		
+		for(BoardVO vo : list) {
+			BoardVO vo2 = null;
+			vo2 = getRegionList(vo.getGoodsId());
+			vo.setRegionName(vo2.getRegionName());
+			vo2 = getPictureGoods(vo.getGoodsId());
+			vo.setImgUrl(vo2.getImgUrl());
+			vo.setCountWishList(countWishList(vo.getGoodsId()));
+			vo.setCountChatRoom(countChatRoom(vo.getGoodsId()));
+			
+			list2.add(vo);
+		}
+		return list2;
+	}
 	
 //	------------------------------------------------------------------------------------------------------------------------------
 	
