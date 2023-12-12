@@ -3,41 +3,50 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.mangomarket.www.dao.MemberDAO">
-	
+
 	<select id="login" resultType="Integer">
-        SELECT COUNT(*) FROM USER
-        WHERE id = #{id} AND pwd = #{pwd}
-    </select>
-    
-    <select id="getMember" resultType="member">
-       select * from user where id=#{id}
-    </select>
+		SELECT COUNT(*) FROM USER
+		WHERE id = #{id} AND pwd = #{pwd}
+	</select>
+
+	<select id="getMember" resultType="member">
+		select * from user where id=#{id}
+	</select>
 
 	<insert id="insertMember">
-		INSERT INTO user(id, userNick, userName, email, phone, pwd) VALUES(#{id}, #{userNick}, #{userName}, #{email}, #{phone}, #{pwd})
+		INSERT INTO user(id, userNick, userName, email,
+		phone, pwd) VALUES(#{id}, #{userNick}, #{userName}, #{email},
+		#{phone}, #{pwd})
 	</insert>
-	
+
 	<update id="insertUserImg">
-		UPDATE user SET imgUrl = #{imgUrl} WHERE userId = #{userId}
+		UPDATE user SET imgUrl = #{imgUrl} WHERE userId =
+		#{userId}
 	</update>
-	
+
 	<update id="userModify">
-		UPDATE user SET userNick=#{userNick}, email=#{email}, phone=#{phone} WHERE userId = #{userId}
+		UPDATE user SET userNick=#{userNick}, email=#{email},
+		phone=#{phone} WHERE userId = #{userId}
 	</update>
-	
+
 	<select id="selectUser" resultType="member">
-		SELECT * FROM user WHERE userId = #{userId};
+		SELECT * FROM user WHERE
+		userId = #{userId};
 	</select>
-	
+
 	<select id="findId" resultType="member">
-		SELECT * FROM user WHERE phone = #{phone}; 
+		SELECT * FROM user WHERE phone =
+		#{phone};
 	</select>
-	
+
 	<select id="findPW" resultType="member">
-		SELECT * FROM user WHERE id = #{id} AND email = #{email};
+		SELECT * FROM user WHERE id =
+		#{id} AND email = #{email};
 	</select>
-	
+
 	<update id="resetPW">
-		UPDATE user SET pwd = #{pwd} WHERE id = #{id} AND email = #{email};
+		UPDATE user SET pwd = #{pwd} WHERE id = #{id} AND
+		email = #{email};
 	</update>
+
 </mapper>

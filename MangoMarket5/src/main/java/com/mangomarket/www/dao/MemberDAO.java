@@ -14,49 +14,47 @@ public class MemberDAO {
 
 	@Autowired
 	private SqlSessionTemplate mybatis;
-	
+
 	@Inject
 	SqlSession sqlSession;
-	
+
 	private final String NAMESPACE = "com.mangomarket.www.dao.MemberDAO";
-	
-	public int login(MemberVO vo) throws Exception{
-		return sqlSession.selectOne(NAMESPACE +".login", vo);
+
+	public int login(MemberVO vo) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + ".login", vo);
 	}
-	
+
 	public MemberVO getMember(String id) {
 		return sqlSession.selectOne(NAMESPACE + ".getMember", id);
 	}
-	
+
 	public void insert(MemberVO vo) {
 		sqlSession.insert(NAMESPACE + ".insertMember", vo);
 	}
-	
+
 	public MemberVO insertUserImg(MemberVO vo) {
 		sqlSession.update(NAMESPACE + ".insertUserImg", vo);
 		return sqlSession.selectOne(NAMESPACE + ".getMember", vo.getUserId());
 	}
-	
+
 	public MemberVO userModify(MemberVO vo, int userId) {
 		vo.setUserId(userId);
 		sqlSession.update(NAMESPACE + ".userModify", vo);
 		return sqlSession.selectOne(NAMESPACE + ".getMember", userId);
 	}
-	
+
 	public MemberVO selectUser(int userId) {
-		MemberVO vo = new MemberVO();
-		vo = mybatis.selectOne(NAMESPACE + ".selectUser", userId);
-		return vo;
+		return mybatis.selectOne(NAMESPACE + ".selectUser", userId);
 	}
-	
+
 	public MemberVO findId(String phone) {
 		return mybatis.selectOne(NAMESPACE + ".findId", phone);
 	}
-	
+
 	public MemberVO findPW(MemberVO vo) {
 		return mybatis.selectOne(NAMESPACE + ".findPW", vo);
 	}
-	
+
 	public void resetPW(MemberVO vo) {
 		mybatis.update(NAMESPACE + ".resetPW", vo);
 	}

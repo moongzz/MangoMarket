@@ -1,33 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
- <mapper namespace="com.mangomarket.www.dao.ChatDAO">
- 
- 	<insert id="insertChatRoom">
-		INSERT INTO chatRoom (buyerId, buyerStatus, sellerId, sellerStatus, goodsId) 
+
+<mapper namespace="com.mangomarket.www.dao.ChatDAO">
+
+	<insert id="insertChatRoom">
+		INSERT INTO chatRoom (buyerId, buyerStatus, sellerId,
+		sellerStatus, goodsId)
 		values(#{buyerId}, #{buyerStatus}, #{sellerId}, #{sellerStatus}, #{goodsId});
 	</insert>
- 	<select id="selectChatRoom" resultType="chatRoom">
-		SELECT * FROM chatroom where buyerId = #{buyerId} AND sellerId = #{sellerId} AND goodsId = #{goodsId};
-	</select>
 	
+	<select id="selectChatRoom" resultType="chatRoom">
+		SELECT * FROM chatroom
+		where buyerId = #{buyerId} AND sellerId = #{sellerId} AND goodsId =
+		#{goodsId};
+	</select>
+
 	<select id="selectChat" resultType="chat">
-		SELECT c.*, u.userNick FROM chats c JOIN user u ON c.fromId = u.userId WHERE c.crId = #{crId} ORDER BY createdAt ASC
+		SELECT c.*, u.userNick FROM
+		chats c JOIN user u ON c.fromId = u.userId WHERE c.crId = #{crId}
+		ORDER BY createdAt ASC
 	</select>
-	
+
 	<select id="selectChatRoomList" resultType="chatRoom">
-		SELECT c.*, m.userNick AS buyerNick, m2.userNick AS sellerNick, g.title, pi.imgUrl FROM chatroom c 
+		SELECT c.*,
+		m.userNick AS buyerNick, m2.userNick AS sellerNick, g.title, pi.imgUrl
+		FROM chatroom c
 		INNER JOIN user m ON c.buyerId = m.userId
-		INNER JOIN user m2 ON c.sellerId = m2.userId
+		INNER JOIN user m2 ON c.sellerId =
+		m2.userId
 		INNER JOIN goods g ON c.goodsId = g.goodsId
-		INNER JOIN picturegoods pi ON g.goodsId = pi.goodsId
-		WHERE c.buyerId = #{userId} OR c.sellerId = #{userId};
+		INNER JOIN
+		picturegoods pi ON g.goodsId = pi.goodsId
+		WHERE c.buyerId = #{userId}
+		OR c.sellerId = #{userId};
 	</select>
-	
+
 	<insert id="insertMessage">
-		INSERT INTO chats (crId, content, fromId, toId) 
+		INSERT INTO chats (crId, content, fromId, toId)
 		values(#{crId}, #{content}, #{fromId}, #{toId});
 	</insert>
-	
- </mapper>
+
+</mapper>

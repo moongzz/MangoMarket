@@ -1,8 +1,6 @@
 package com.mangomarket.www.dao;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -17,9 +15,9 @@ public class BoardDAO {
 
 	@Autowired
 	private SqlSessionTemplate mybatis;
-	
+
 	private final String NAMESPACE = "com.mangomarket.www.dao.BoardDAO";
-	
+
 	public void insertGood(BoardVO vo) {
 		mybatis.insert(NAMESPACE + ".insertGood", vo);
 		int goodsId = mybatis.selectOne(NAMESPACE + ".getGoodsId", vo);
@@ -30,13 +28,14 @@ public class BoardDAO {
 		vo.setImgUrl(vo2.getImgUrl());
 		mybatis.insert(NAMESPACE + ".insertSellHistory", vo);
 	}
-	
-	public List<BoardVO> getPopularItems(String realPath){
+
+	public List<BoardVO> getPopularItems(String realPath) {
 		List<Integer> goodsIdList = mybatis.selectList(NAMESPACE + ".getGoodsIdList");
 		List<BoardVO> list = new ArrayList<BoardVO>();
-		for(int goodsId : goodsIdList) {
+		for (int goodsId : goodsIdList) {
 			int wishListCount = countWishList(goodsId);
-			if(wishListCount >= 5) {
+			
+			if (wishListCount >= 5) {
 				BoardVO vo = getGood(goodsId);
 				BoardVO vo2 = getRegionList(vo.getGoodsId());
 				vo.setRegionName(vo2.getRegionName());
@@ -44,19 +43,20 @@ public class BoardDAO {
 				vo.setImgUrl(vo2.getImgUrl());
 				vo.setCountWishList(countWishList(goodsId));
 				vo.setCountChatRoom(countChatRoom(goodsId));
-				
+
 				list.add(vo);
 			}
 		}
+		// 위시리스트 개수 기준으로 내림차순
 		list.sort((vo1, vo2) -> Integer.compare(vo2.getCountWishList(), vo1.getCountWishList()));
 		return list;
 	}
-	
-	public List<BoardVO> listBoard(int menuNum, String realPath){
+
+	public List<BoardVO> listBoard(int menuNum, String realPath) {
 		List<BoardVO> list = getGoods(menuNum);
 		List<BoardVO> list2 = new ArrayList<BoardVO>();
-		
-		for(BoardVO vo : list) {
+
+		for (BoardVO vo : list) {
 			BoardVO vo2 = null;
 			vo2 = getRegionList(vo.getGoodsId());
 			vo.setRegionName(vo2.getRegionName());
@@ -65,39 +65,41 @@ public class BoardDAO {
 			vo.setRealPath(realPath);
 			vo.setCountWishList(countWishList(vo.getGoodsId()));
 			vo.setCountChatRoom(countChatRoom(vo.getGoodsId()));
-			
+
 			list2.add(vo);
 		}
 		return list2;
 	}
-	
-	public List<BoardVO> listBoardFilter(int category, int category2){
+
+	public List<BoardVO> listBoardFilter(int category, int category2) {
 		BoardVO vo3 = new BoardVO();
 		vo3.setCategory(category + "");
 		vo3.setCategory2(category2 + "");
 		List<BoardVO> list = new ArrayList<BoardVO>();
-		
-		if(category2 == 0) list = getGoods(category);
-		else list = getGoodsFilter(vo3);
-		
+
+		if (category2 == 0)
+			list = getGoods(category);
+		else
+			list = getGoodsFilter(vo3);
+
 		List<BoardVO> list2 = new ArrayList<BoardVO>();
-		for(BoardVO vo : list) {
+		for (BoardVO vo : list) {
 			BoardVO vo2 = null;
 			vo2 = getRegionList(vo.getGoodsId());
 			vo.setRegionName(vo2.getRegionName());
 			vo2 = getPictureGoods(vo.getGoodsId());
 			vo.setImgUrl(vo2.getImgUrl());
 			vo.setRlId(vo2.getRlId());
-			
+
 			vo.setCountWishList(countWishList(vo.getGoodsId()));
 			vo.setCountChatRoom(countChatRoom(vo.getGoodsId()));
-			
+
 			list2.add(vo);
 		}
 		return list2;
-		
+
 	}
-	
+
 	public BoardVO showGood(int goodsId) {
 		BoardVO vo = new BoardVO();
 		BoardVO vo2 = new BoardVO();
@@ -111,12 +113,12 @@ public class BoardDAO {
 		vo.setCountChatRoom(countChatRoom(vo.getGoodsId()));
 		return vo;
 	}
-	
-	public List<BoardVO> showWishList(int userId){
+
+	public List<BoardVO> showWishList(int userId) {
 		List<WishListVO> userWishList = mybatis.selectList(NAMESPACE + ".getUserWishList", userId);
 		List<BoardVO> wishListGoods = new ArrayList<BoardVO>();
-		
-		for(WishListVO vo : userWishList) {
+
+		for (WishListVO vo : userWishList) {
 			BoardVO bvo = getGood(vo.getGoodsId());
 			BoardVO imgbvo = getPictureGoods(bvo.getGoodsId());
 			bvo.setImgUrl(imgbvo.getImgUrl());
@@ -124,34 +126,34 @@ public class BoardDAO {
 			bvo.setCountChatRoom(countChatRoom(vo.getGoodsId()));
 			wishListGoods.add(bvo);
 		}
-		
+
 		return wishListGoods;
 	}
-	
-	public List<BoardVO> sellHistory(int userId){
+
+	public List<BoardVO> sellHistory(int userId) {
 		List<BoardVO> sellGoods = mybatis.selectList(NAMESPACE + ".getSellGoods", userId);
 		List<BoardVO> userSellList = getHistoryGoods(sellGoods);
-		
+
 		return userSellList;
 	}
-	
-	public List<BoardVO> buyHistory(int userId){
+
+	public List<BoardVO> buyHistory(int userId) {
 		List<BoardVO> buyGoods = mybatis.selectList(NAMESPACE + ".getBuyGoods", userId);
 		List<BoardVO> userBuyList = getHistoryGoods(buyGoods);
-		
+
 		return userBuyList;
 	}
-	
+
 	public void completeSale(BoardVO vo) {
 		mybatis.update(NAMESPACE + ".completeSale", vo);
 		mybatis.insert(NAMESPACE + ".insertBuyHistory", vo);
 	}
-	
-	public List<BoardVO> searchGoods(String searchValue){
+
+	public List<BoardVO> searchGoods(String searchValue) {
 		List<BoardVO> list = mybatis.selectList(NAMESPACE + ".searchGoods", searchValue);
 		List<BoardVO> list2 = new ArrayList<BoardVO>();
-		
-		for(BoardVO vo : list) {
+
+		for (BoardVO vo : list) {
 			BoardVO vo2 = null;
 			vo2 = getRegionList(vo.getGoodsId());
 			vo.setRegionName(vo2.getRegionName());
@@ -159,18 +161,16 @@ public class BoardDAO {
 			vo.setImgUrl(vo2.getImgUrl());
 			vo.setCountWishList(countWishList(vo.getGoodsId()));
 			vo.setCountChatRoom(countChatRoom(vo.getGoodsId()));
-			
+
 			list2.add(vo);
 		}
 		return list2;
 	}
-	
-//	------------------------------------------------------------------------------------------------------------------------------
-	
-	private List<BoardVO> getHistoryGoods(List<BoardVO> list){
+
+	private List<BoardVO> getHistoryGoods(List<BoardVO> list) {
 		List<BoardVO> goodsList = new ArrayList<BoardVO>();
-		
-		for(BoardVO vo : list) {
+
+		for (BoardVO vo : list) {
 			BoardVO bvo = getGood(vo.getGoodsId());
 			BoardVO imgbvo = getPictureGoods(bvo.getGoodsId());
 			bvo.setImgUrl(imgbvo.getImgUrl());
@@ -178,34 +178,34 @@ public class BoardDAO {
 			bvo.setCountChatRoom(countChatRoom(vo.getGoodsId()));
 			goodsList.add(bvo);
 		}
-		
+
 		return goodsList;
 	}
-	
-	private List<BoardVO> getGoods(int category){
+
+	private List<BoardVO> getGoods(int category) {
 		return mybatis.selectList(NAMESPACE + ".selectGoods", category);
 	}
-	
+
 	private BoardVO getGood(int goodsId) {
 		return mybatis.selectOne(NAMESPACE + ".getGood", goodsId);
 	}
-	
-	private List<BoardVO> getGoodsFilter(BoardVO vo){
+
+	private List<BoardVO> getGoodsFilter(BoardVO vo) {
 		return mybatis.selectList(NAMESPACE + ".selectGoodsFilter", vo);
 	}
-	
-	private BoardVO getPictureGoods(int goodsId){
+
+	private BoardVO getPictureGoods(int goodsId) {
 		return mybatis.selectOne(NAMESPACE + ".selectPictureGoods", goodsId);
 	}
-	
-	private BoardVO getRegionList(int goodsId){
+
+	private BoardVO getRegionList(int goodsId) {
 		return mybatis.selectOne(NAMESPACE + ".selectRegionList", goodsId);
 	}
-	
+
 	private int countWishList(int goodsId) {
 		return mybatis.selectOne(NAMESPACE + ".countWishList", goodsId);
 	}
-	
+
 	private int countChatRoom(int goodsId) {
 		return mybatis.selectOne(NAMESPACE + ".countChatRoom", goodsId);
 	}

@@ -1,6 +1,5 @@
 package com.mangomarket.www.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +15,10 @@ public class BoardServiceImpl implements BoardService {
 
 	@Autowired
 	private BoardDAO dao;
-	
+
 	@Autowired
 	private WishListDAO wishListDao;
-	
+
 	@Override
 	public void insertGood(BoardVO vo) {
 		dao.insertGood(vo);
@@ -27,52 +26,43 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<BoardVO> listBoard(int menuNum, String realPath) {
-		List<BoardVO> list = new ArrayList<BoardVO>();
-		if(menuNum == 0) {
-			list = dao.getPopularItems(realPath);
-		} else {
-			list = dao.listBoard(menuNum, realPath);
-		}
-		return list;
+		if (menuNum == 0)
+			return dao.getPopularItems(realPath);
+		else
+			return dao.listBoard(menuNum, realPath);
 	}
 
 	@Override
 	public List<BoardVO> listBoardFilter(int category, int category2) {
-		List<BoardVO> list = dao.listBoardFilter(category, category2);
-		return list;
+		return dao.listBoardFilter(category, category2);
 	}
 
 	@Override
 	public BoardVO showGood(int goodsId) {
-		BoardVO vo = dao.showGood(goodsId);
-		return vo;
+		return dao.showGood(goodsId);
 	}
 
 	@Override
 	public void wishList(WishListVO vo) {
-		if(wishListDao.checkWishList(vo) != null) {
+		if (wishListDao.checkWishList(vo) != null)
 			wishListDao.deleteWishList(vo);
-		} else {
+		else
 			wishListDao.wishList(vo);
-		}
 	}
 
 	@Override
 	public List<BoardVO> showWishList(int userId) {
-		List<BoardVO> list = dao.showWishList(userId);
-		return list;
+		return dao.showWishList(userId);
 	}
 
 	@Override
 	public List<BoardVO> sellHistory(int userId) {
-		List<BoardVO> list = dao.sellHistory(userId);
-		return list;
+		return dao.sellHistory(userId);
 	}
-	
+
 	@Override
 	public List<BoardVO> buyHistory(int userId) {
-		List<BoardVO> list = dao.buyHistory(userId);
-		return list;
+		return dao.buyHistory(userId);
 	}
 
 	@Override
@@ -85,5 +75,4 @@ public class BoardServiceImpl implements BoardService {
 		return dao.searchGoods(searchValue);
 	}
 
-	
 }

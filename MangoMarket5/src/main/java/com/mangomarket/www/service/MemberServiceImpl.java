@@ -11,7 +11,7 @@ import com.mangomarket.www.vo.MemberVO;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
-	
+
 	@Inject
 	MemberDAO dao;
 
@@ -19,15 +19,14 @@ public class MemberServiceImpl implements MemberService {
 	public int login(MemberVO vo) throws Exception {
 		return dao.login(vo);
 	}
-	
+
 	@Override
 	public void loginCheck(MemberVO vo, HttpSession session) {
 		MemberVO vo2 = dao.getMember(vo.getId());
-		if(vo2.getId() != null) {
+		if (vo2.getId() != null)
 			session.setAttribute("userInfo", vo2);
-		}
 	}
-	
+
 	@Override
 	public void insert(MemberVO vo) {
 		dao.insert(vo);
@@ -35,7 +34,6 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public void insertUserImg(MemberVO vo, HttpServletRequest request, HttpSession session) {
-		System.out.println("imgUrl = " + vo.getImgUrl());
 		MemberVO vo2 = dao.insertUserImg(vo);
 		session.setAttribute("userInfo", vo2);
 	}
@@ -68,7 +66,6 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void resetPW(MemberVO vo) {
 		dao.resetPW(vo);
-		
 	}
 
 }

@@ -14,30 +14,33 @@ public class ChatDAO {
 
 	@Autowired
 	private SqlSessionTemplate mybatis;
-	
+
 	private final String NAMESPACE = "com.mangomarket.www.dao.ChatDAO";
-	
+
 	public void setChatRoom(ChatRoomVO crvo) {
-		ChatRoomVO vo = mybatis.selectOne(NAMESPACE + ".selectChatRoom", crvo);
-		if(vo == null) mybatis.insert(NAMESPACE + ".insertChatRoom", crvo);
+		ChatRoomVO vo = getChatRoom(crvo);
+		if (vo == null)
+			mybatis.insert(NAMESPACE + ".insertChatRoom", crvo);
 	}
-	
-	public List<ChatVO> showChat(int crId){
-		List<ChatVO> chatList = mybatis.selectList(NAMESPACE + ".selectChat", crId);
-		return chatList;
+
+	public List<ChatVO> showChat(int crId) {
+		return mybatis.selectList(NAMESPACE + ".selectChat", crId);
 	}
-	
-	public List<ChatRoomVO> showChatRoom(int userId){
-		List<ChatRoomVO> chatRoomList = mybatis.selectList(NAMESPACE + ".selectChatRoomList", userId);
-		return chatRoomList;
+
+	public List<ChatRoomVO> showChatRoom(int userId) {
+		return mybatis.selectList(NAMESPACE + ".selectChatRoomList", userId);
 	}
-	
+
 	public void sendMessage(ChatVO cvo) {
 		mybatis.insert(NAMESPACE + ".insertMessage", cvo);
 	}
-	
+
 	public int getCrId(ChatRoomVO crvo) {
-		ChatRoomVO vo = mybatis.selectOne(NAMESPACE + ".selectChatRoom", crvo);
+		ChatRoomVO vo = getChatRoom(crvo);
 		return vo.getCrId();
+	}
+
+	private ChatRoomVO getChatRoom(ChatRoomVO crvo) {
+		return mybatis.selectOne(NAMESPACE + ".selectChatRoom", crvo);
 	}
 }

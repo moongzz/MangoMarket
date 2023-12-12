@@ -50,7 +50,7 @@ public class FrontController {
 	@RequestMapping("/searchGoodList")
 	public String searchGoodsList(@RequestParam("search") String search, Model model) {
 		model.addAttribute("searchValue", search);
-		return "searchGoodList";
+		return SEARCH_GOOD_LIST.getPath();
 	}
-	
+
 }

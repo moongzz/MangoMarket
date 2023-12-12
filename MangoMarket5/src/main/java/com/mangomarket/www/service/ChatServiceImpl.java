@@ -22,14 +22,12 @@ public class ChatServiceImpl implements ChatService {
 
 	@Override
 	public List<ChatVO> showChat(int crId) {
-		List<ChatVO> chatList = dao.showChat(crId);
-		return chatList;
+		return dao.showChat(crId);
 	}
 
 	@Override
 	public List<ChatRoomVO> showChatRoom(int userId) {
-		List<ChatRoomVO> chatRoomList = dao.showChatRoom(userId);
-		return chatRoomList;
+		return dao.showChatRoom(userId);
 	}
 
 	@Override
@@ -42,5 +40,4 @@ public class ChatServiceImpl implements ChatService {
 		return dao.getCrId(crvo);
 	}
 
-	
 }
