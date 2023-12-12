@@ -25,7 +25,7 @@
 	
 	
 	<select id="selectGoods" resultType="board">
-		SELECT * FROM goods WHERE categoryId BETWEEN #{categoryId}*10 and #{categoryId}*10+9;
+		SELECT * FROM goods WHERE categoryId BETWEEN #{categoryId}*10 and #{categoryId}*10+9 and status = "O";
 	</select>
 	
 	<select id="selectRegionList" resultType="board">
@@ -38,7 +38,7 @@
 	
 	
 	<select id = "selectGoodsFilter" resultType="board">
-		SELECT * FROM goods WHERE categoryId % 10 = #{category2} and categoryId BETWEEN #{category}*10 and #{category}*10+9;
+		SELECT * FROM goods WHERE categoryId % 10 = #{category2} and categoryId BETWEEN #{category}*10 and #{category}*10+9 and status = "O";
 	</select>
 	
 	<select id="getGood" resultType="board">
@@ -85,10 +85,10 @@
 	    FROM goods
 	    INNER JOIN regionList ON goods.goodsId = regionList.goodsId
 	    WHERE (goods.title LIKE CONCAT('%', #{searchValue}, '%') OR goods.content LIKE CONCAT('%', #{searchValue}, '%'))
-	    OR regionList.regionName LIKE CONCAT('%', #{searchValue}, '%')
+	    OR regionList.regionName LIKE CONCAT('%', #{searchValue}, '%') and status = "O"
 	</select>
 	
 	<select id="getGoodsIdList" resultType="Integer">
-		SELECT goodsId FROM goods;
+		SELECT goodsId FROM goods WHERE status = "O";
 	</select>
 </mapper>
