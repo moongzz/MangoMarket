@@ -88,4 +88,7 @@
 	    OR regionList.regionName LIKE CONCAT('%', #{searchValue}, '%')
 	</select>
 	
+	<select id="getGoodsIdList" resultType="Integer">
+		SELECT goodsId FROM goods;
+	</select>
 </mapper>

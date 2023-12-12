@@ -182,17 +182,4 @@ public class BoardVO {
 		this.countChatRoom = countChatRoom;
 	}
 	
-	@Override
-	public String toString() {
-		return "BoardVO [data=" + data + ", goodsId=" + goodsId + ", createdAt=" + createdAt + ", status=" + status
-				+ ", sellerId=" + sellerId + ", title=" + title + ", content=" + content + ", price=" + price
-				+ ", category=" + category + ", category2=" + category2 + ", categoryId=" + categoryId + ", pgId="
-				+ pgId + ", imgUrl=" + imgUrl + ", rlId=" + rlId + ", roadAddress=" + roadAddress + ", jibunAddress="
-				+ jibunAddress + ", detailAddress=" + detailAddress + ", extraAddress=" + extraAddress + ", regionName="
-				+ regionName + ", realPath=" + realPath + ", countWishList=" + countWishList + ", countChatRoom="
-				+ countChatRoom + "]";
-	}
-	
-	
-	
 }

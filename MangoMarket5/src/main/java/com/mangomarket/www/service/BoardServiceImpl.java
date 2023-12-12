@@ -1,5 +1,6 @@
 package com.mangomarket.www.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,12 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public List<BoardVO> listBoard(int menuNum, String realPath) {
-		List<BoardVO> list = dao.listBoard(menuNum, realPath);
+		List<BoardVO> list = new ArrayList<BoardVO>();
+		if(menuNum == 0) {
+			list = dao.getPopularItems(realPath);
+		} else {
+			list = dao.listBoard(menuNum, realPath);
+		}
 		return list;
 	}
 

@@ -1,6 +1,8 @@
 package com.mangomarket.www.dao;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -27,6 +29,27 @@ public class BoardDAO {
 		BoardVO vo2 = getPictureGoods(goodsId);
 		vo.setImgUrl(vo2.getImgUrl());
 		mybatis.insert(NAMESPACE + ".insertSellHistory", vo);
+	}
+	
+	public List<BoardVO> getPopularItems(String realPath){
+		List<Integer> goodsIdList = mybatis.selectList(NAMESPACE + ".getGoodsIdList");
+		List<BoardVO> list = new ArrayList<BoardVO>();
+		for(int goodsId : goodsIdList) {
+			int wishListCount = countWishList(goodsId);
+			if(wishListCount >= 5) {
+				BoardVO vo = getGood(goodsId);
+				BoardVO vo2 = getRegionList(vo.getGoodsId());
+				vo.setRegionName(vo2.getRegionName());
+				vo2 = getPictureGoods(goodsId);
+				vo.setImgUrl(vo2.getImgUrl());
+				vo.setCountWishList(countWishList(goodsId));
+				vo.setCountChatRoom(countChatRoom(goodsId));
+				
+				list.add(vo);
+			}
+		}
+		list.sort((vo1, vo2) -> Integer.compare(vo2.getCountWishList(), vo1.getCountWishList()));
+		return list;
 	}
 	
 	public List<BoardVO> listBoard(int menuNum, String realPath){
