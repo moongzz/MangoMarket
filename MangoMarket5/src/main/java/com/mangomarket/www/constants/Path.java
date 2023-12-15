@@ -13,7 +13,8 @@ public enum Path {
 	USER_HISTORY_PAGE("userHistory"),
 	FIND_ID_PAGE("findID"),
 	FIND_PASSWORD_PAGE("findPassword"),
-	SEARCH_GOOD_LIST("searchGoodList");
+	SEARCH_GOOD_LIST("searchGoodList"),
+	CUSTOMER_CENTER("customerCenter");
 	
 	private final String path;
 	

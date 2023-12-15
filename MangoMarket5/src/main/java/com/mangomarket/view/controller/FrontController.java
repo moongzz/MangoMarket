@@ -52,5 +52,10 @@ public class FrontController {
 		model.addAttribute("searchValue", search);
 		return SEARCH_GOOD_LIST.getPath();
 	}
+	
+	@RequestMapping("/customerCenter")
+	public String customerCenter() {
+		return CUSTOMER_CENTER.getPath();
+	}
 
 }
