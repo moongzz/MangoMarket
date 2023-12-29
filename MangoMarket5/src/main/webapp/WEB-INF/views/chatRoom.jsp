@@ -23,14 +23,14 @@
 	    <c:forEach var="chatRoom" items="${chatRoomList}">
 			<div id="chatRoomBox" onclick="document.location.href='chat?buyerId=${chatRoom.buyerId}&sellerId=${chatRoom.sellerId }&goodsId=${chatRoom.goodsId }'">
 				<div id="createdAtBox">${chatRoom.createdAt}</div>
-				<div id="userNick">${userNickText}</div>
-				<div id="titleBox">${chatRoom.title}</div>
 				<c:if test="${userInfo.userNick eq chatRoom.buyerNick}">
 					<c:set var="userNickText" value="${chatRoom.sellerNick}"/>
 				</c:if>
 				<c:if test="${userInfo.userNick eq chatRoom.sellerNick }">
 					<c:set var="userNickText" value="${chatRoom.buyerNick}"/>
 				</c:if>
+				<div id="userNick">${userNickText}</div>
+				<div id="titleBox">${chatRoom.title}</div>
 				<div id="imgBox">
 					<img src="/uploadImg/${chatRoom.imgUrl}" alt="상품사진1" />
 				</div>
