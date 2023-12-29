@@ -102,10 +102,11 @@
 		SELECT goods.*
 		FROM goods
 		INNER JOIN regionList ON goods.goodsId = regionList.goodsId
-		WHERE (goods.title LIKE CONCAT('%', #{searchValue}, '%') OR goods.content
-		LIKE CONCAT('%', #{searchValue}, '%'))
-		OR regionList.regionName LIKE CONCAT('%', #{searchValue}, '%') and
-		status = "O"
+		WHERE (
+			(goods.title LIKE CONCAT('%', #{searchValue}, '%') OR goods.content LIKE CONCAT('%', #{searchValue}, '%'))
+			OR regionList.regionName LIKE CONCAT('%', #{searchValue}, '%') 
+		)
+		AND status = "O"
 	</select>
 
 	<select id="getGoodsIdList" resultType="Integer">
